@@ -1,0 +1,67 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: codescrapbook/wevibing
+  branch: main
+  # For production GitHub OAuth, set up a proxy and uncomment:
+  # base_url: https://YOUR-OAUTH-APP
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: editorial_workflow
+
+site_url: "https://wevibing.com"
+display_url: "https://wevibing.com"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "streams"
+    label: "Streams"
+    folder: "_streams"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Stream Date", name: "stream_date", widget: "date", required: false }
+      - { label: "Video URL (YouTube)", name: "video_url", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Projects"
+        name: "projects"
+        file: "projects.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Book Club"
+        name: "book-club"
+        file: "book-club.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Support"
+        name: "support"
+        file: "support.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
