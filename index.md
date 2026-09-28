@@ -1,6 +1,7 @@
 ---
 layout: page
 title: We Vibing
+hide_title: true
 permalink: /
 ---
 
