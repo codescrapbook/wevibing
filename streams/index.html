@@ -1,0 +1,22 @@
+---
+layout: page
+title: "Streams / Videos"
+description: "Live coding sessions and deep dives."
+permalink: /streams/
+---
+<div class="cards">
+  {% assign streams = site.streams | sort: 'date' | reverse %}
+  {% for s in streams %}
+    <article class="card">
+      <div class="card-body">
+        <div class="chip">{{ s.date | date: "%b %-d, %Y" }}</div>
+        <h3><a href="{{ s.url | relative_url }}">{{ s.title }}</a></h3>
+        <p class="muted">{{ s.description }}</p>
+        <div>{% if s.youtube_id or s.video_url %}<a href="{{ s.url | relative_url }}">Watch →</a>{% else %}<span class="muted">Coming soon</span>{% endif %}</div>
+      </div>
+    </article>
+  {% endfor %}
+  {% if streams == empty %}
+    <p class="muted">No streams yet. First ones are coming soon.</p>
+  {% endif %}
+</div>

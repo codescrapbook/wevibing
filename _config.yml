@@ -1,0 +1,91 @@
+title: "We Vibing"
+tagline: "Code with AI — from vibes to agents"
+description: "We Vibing teaches you how to code with AI: start with vibe-driven coding, then level up to agentic programming, guardrails, and workflows."
+url: "https://wevibing.com"
+baseurl: ""
+locale: "en_US"
+timezone: "UTC"
+
+author:
+  name: "Joe Seeley"
+
+# We use custom layouts, not a stock theme
+# theme: minima
+
+permalink: /blog/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Collections
+collections:
+  streams:
+    output: true
+    permalink: /streams/:name/
+  bookclub:
+    output: true
+    permalink: /book-club/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "streams"
+    values:
+      layout: "stream"
+  - scope:
+      path: ""
+    values:
+      layout: "page"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Navigation
+nav:
+  - name: "Home"
+    url: "/"
+  - name: "Blog"
+    url: "/blog/"
+  - name: "Streams"
+    url: "/streams/"
+  - name: "Projects"
+    url: "/projects/"
+  - name: "Book Club"
+    url: "/book-club/"
+  - name: "About"
+    url: "/about/"
+  - name: "Support"
+    url: "/support/"
+
+# Social and SEO defaults
+social:
+  twitter: "wevibing" # placeholder
+  github: "wevibing"  # placeholder
+  youtube: "wevibing" # placeholder
+
+logo: /assets/images/logo.svg
+image: /assets/images/og-default.jpg
+
+feed:
+  path: feed.xml
+
+exclude:
+  - "node_modules"
+  - "vendor"
+  - "README.md"
+  - "Gemfile.lock"
+

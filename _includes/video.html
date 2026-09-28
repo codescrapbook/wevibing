@@ -1,0 +1,17 @@
+{% assign youtube_id = include.youtube_id | default: page.youtube_id %}
+{% assign video_url = include.video_url | default: page.video_url %}
+<div class="video-embed">
+  {% if youtube_id %}
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/{{ youtube_id }}"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+  {% elsif video_url %}
+    <div class="embed-responsive">
+      <iframe src="{{ video_url }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+  {% else %}
+    <p>No video provided yet.</p>
+  {% endif %}
+</div>

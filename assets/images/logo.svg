@@ -1,0 +1,21 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#101521"/>
+  <g filter="url(#glow)">
+    <path d="M28 80c10-4 20-12 27-22 5-7 13-18 23-18 10 0 17 9 22 18 4 7 8 12 14 16" stroke="url(#grad1)" stroke-width="10" stroke-linecap="round" fill="none"/>
+  </g>
+  <circle cx="40" cy="88" r="6" fill="#00E0B8"/>
+  <circle cx="88" cy="40" r="6" fill="#7C5CFF"/>
+  <defs>
+    <linearGradient id="grad1" x1="28" y1="40" x2="114" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#00E0B8"/>
+    </linearGradient>
+    <filter id="glow" x="-20" y="-20" width="168" height="168" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

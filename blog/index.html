@@ -1,0 +1,24 @@
+---
+layout: page
+title: "Blog"
+description: "Articles on coding with AI — vibe coding, agentic patterns, and more."
+permalink: /blog/
+---
+<div class="cards">
+  {% for post in site.posts %}
+    <article class="card">
+      {% if post.hero %}<img src="{{ post.hero | relative_url }}" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--border)">{% endif %}
+      <div class="card-body">
+        <div class="chip">{{ post.date | date: "%b %-d, %Y" }}</div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="muted">{{ post.description }}</p>
+        <div>
+          {% for tag in post.tags limit:4 %}<span class="tag">{{ tag }}</span>{% endfor %}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+  {% if site.posts == empty %}
+    <p class="muted">No posts yet. Check back soon.</p>
+  {% endif %}
+</div>

@@ -1,0 +1,86 @@
+local_backend: true
+
+# Choose a production backend when deploying:
+# Option A: Netlify Identity + Git Gateway (recommended for Netlify)
+backend:
+  name: git-gateway
+  branch: main
+
+# Option B: GitHub backend (uncomment and fill when using GitHub auth apps)
+# backend:
+#   name: github
+#   repo: your-github-username/your-repo-name
+#   branch: main
+#   base_url: https://your-auth-proxy.example.com # If using a proxy for auth (optional)
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: "https://wevibing.com"
+display_url: "https://wevibing.com"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "blog/{{slug}}/"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Hero Image", name: "hero", widget: "image", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "streams"
+    label: "Streams / Videos"
+    label_singular: "Stream"
+    folder: "_streams"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "streams/{{slug}}/"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "YouTube ID", name: "youtube_id", widget: "string", required: false, hint: "e.g. dQw4w9WgXcQ" }
+      - { label: "Video URL (alt)", name: "video_url", widget: "string", required: false, hint: "Use for non-YouTube embeds" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Basic Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Projects"
+        name: "projects"
+        file: "projects.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Book Club"
+        name: "book_club"
+        file: "book-club.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Support"
+        name: "support"
+        file: "support.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
