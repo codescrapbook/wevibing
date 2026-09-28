@@ -4,12 +4,8 @@ title: Blog
 permalink: /blog/
 ---
 
-<ul class="post-list">
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-      <div class="muted">{{ post.date | date: "%b %-d, %Y" }}</div>
-    </li>
-  {% endfor %}
-</ul>
+<div class="section">
+  <p class="muted">We’ve consolidated our posts and streams into a single combined feed.</p>
+  <p><a class="pill" href="{{ '/feed/' | relative_url }}">Go to the Feed →</a></p>
+</div>
 
