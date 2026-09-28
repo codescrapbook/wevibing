@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="stream">
+  <header class="stream-header">
+    <p class="stream-meta">
+      {% if page.stream_date %}{{ page.stream_date | date: "%b %-d, %Y" }} · {% endif %}Live Stream
+    </p>
+    <h1 class="stream-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="stream-description">{{ page.description }}</p>{% endif %}
+  </header>
+  <section class="stream-body">
+    {% if page.video_url %}
+      <div class="video-embed">
+        <iframe src="{{ page.video_url | replace: 'watch?v=', 'embed/' }}" title="{{ page.title }}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    {% endif %}
+    {{ content }}
+  </section>
+  <footer class="stream-footer">
+    <a class="back-link" href="{{ '/streams/' | relative_url }}">&larr; Back to Streams</a>
+  </footer>
+</article>
+

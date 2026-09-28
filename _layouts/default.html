@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    {% seo %}
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    {% include header.html %}
+    <main id="content" class="container">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>
+
