@@ -37,6 +37,11 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-paginate-v2
+
+# Pagination (jekyll-paginate-v2)
+pagination:
+  enabled: true
 
 exclude:
   - node_modules
@@ -59,10 +64,8 @@ seo:
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Blog"
-    url: "/blog/"
-  - title: "Streams"
-    url: "/streams/"
+  - title: "Feed"
+    url: "/feed/"
   - title: "Projects"
     url: "/projects/"
   - title: "Book Club"
