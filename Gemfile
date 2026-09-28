@@ -4,6 +4,7 @@ ruby ">= 3.0.0"
 
 gem "jekyll", "~> 4.3"
 gem "webrick", "~> 1.8" # needed for Ruby 3+ local server
+gem "net-smtp" # confirmation email for double opt-in
 
 # SEO and discovery
 gem "jekyll-seo-tag", "~> 2.8"

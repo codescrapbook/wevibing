@@ -6,6 +6,10 @@ baseurl: "" # empty for canonical; GitHub Pages adds baseurl via _config.pages.y
 lang: en
 timezone: UTC
 
+# Local double opt-in API. Point this at the public server when SMTP is configured.
+subscribe:
+  endpoint: "http://127.0.0.1:4001"
+
 author:
   name: "Joe Seeley"
 
