@@ -4,13 +4,8 @@ title: Streams
 permalink: /streams/
 ---
 
-<ul class="stream-list">
-  {% assign streams_sorted = site.streams | sort: 'stream_date' | reverse %}
-  {% for stream in streams_sorted %}
-    <li>
-      <a href="{{ stream.url | relative_url }}"><strong>{{ stream.title }}</strong></a>
-      {% if stream.stream_date %}<div class="muted">{{ stream.stream_date | date: "%b %-d, %Y" }}</div>{% endif %}
-    </li>
-  {% endfor %}
-</ul>
+<div class="section">
+  <p class="muted">Streams now appear alongside blog posts in our combined feed.</p>
+  <p><a class="pill" href="{{ '/feed/' | relative_url }}">Go to the Feed →</a></p>
+</div>
 

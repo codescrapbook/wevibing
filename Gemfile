@@ -13,6 +13,9 @@ gem "jekyll-feed", "~> 0.17"
 # Performance helpers
 gem "jekyll-include-cache", "~> 0.2"
 
+# Pagination across multiple collections
+gem "jekyll-paginate-v2", "~> 3.0"
+
 group :development do
   gem "bundler", ">= 2.3"
 end

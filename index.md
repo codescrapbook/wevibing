@@ -32,7 +32,7 @@ permalink: /
           </li>
         {% endfor %}
       </ul>
-      <p><a href="{{ '/blog/' | relative_url }}">View all posts →</a></p>
+      <p><a href="{{ '/feed/' | relative_url }}">View the Feed →</a></p>
     </div>
     <div class="card" style="grid-column: span 5;">
       <h2>Upcoming & recent streams</h2>
@@ -45,7 +45,7 @@ permalink: /
           </li>
         {% endfor %}
       </ul>
-      <p><a href="{{ '/streams/' | relative_url }}">View streams →</a></p>
+      <p><a href="{{ '/feed/' | relative_url }}">View the Feed →</a></p>
     </div>
   </div>
 </div>
