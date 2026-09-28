@@ -26,6 +26,7 @@
         const toggle = document.querySelector('.nav-toggle');
         const menu = document.getElementById('site-menu');
         if (!toggle || !menu) return;
+        const DESKTOP_BP = 960; // should match $bp-md in CSS
         function setExpanded(isOpen) {
           toggle.setAttribute('aria-expanded', String(isOpen));
           document.body.classList.toggle('nav-open', isOpen);
@@ -38,6 +39,15 @@
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape') setExpanded(false);
         });
+        // Ensure menu is open/visible on desktop and not stuck from a mobile toggle
+        function handleResize() {
+          if (window.innerWidth >= DESKTOP_BP) {
+            setExpanded(false);
+          }
+        }
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+        handleResize();
       })();
     </script>
   </body>

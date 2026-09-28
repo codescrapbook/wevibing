@@ -222,8 +222,12 @@ $bp-lg: 1100px;
   min-height: 44px; /* touch target */
 }
 .site-nav .cta a { text-align: center; }
-.js .site-nav { display: none; }
-.nav-open .site-nav { display: block; }
+/* Scope collapsed nav to small screens only */
+$bp-md-down: ($bp-md - 1px);
+@media (max-width: $bp-md-down) {
+  .js .site-nav { display: none; }
+  .nav-open .site-nav { display: block; }
+}
 
 /* Grid: 1 column by default; 12-column at md+ */
 .grid { grid-template-columns: 1fr; }
@@ -244,6 +248,9 @@ $bp-lg: 1100px;
   .site-nav { width: auto; margin-top: 0; }
   .site-nav ul { flex-direction: row; align-items: center; gap: 18px; }
   .site-nav a { padding: 6px 10px; min-height: 0; display: inline-block; }
+  /* Force nav visible on desktop regardless of JS/body state */
+  .js .site-nav,
+  .nav-open .site-nav { display: block !important; }
 }
 
 /* Typography improvements */
