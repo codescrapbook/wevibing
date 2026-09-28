@@ -7,6 +7,9 @@ This repository hosts the We Vibing site and blog.
 Prereqs:
 - Ruby (3.0+ recommended)
 - Bundler (`gem install bundler`)
+ 
+Plugins:
+- Pagination uses `jekyll-paginate-v2` (installed via Gemfile)
 
 Clone and run:
 
@@ -14,7 +17,7 @@ Clone and run:
 git clone https://github.com/codescrapbook/wevibing
 cd wevibing
 bundle install
-bundle exec jekyll serve
+bundle exec jekyll serve --config _config.yml,_config.pages.yml
 ```
 
 Open `http://localhost:4000`.
@@ -24,6 +27,13 @@ Open `http://localhost:4000`.
 - Posts: `_posts/*.md` (standard Jekyll posts)
 - Streams: `_streams/*.md` (custom collection)
 - Pages: root-level `*.md` (`/about`, `/projects`, `/book-club`, `/support`)
+ 
+## Combined Feed
+
+- The site now has a single combined feed at `/feed/` that lists both Posts and Streams together, newest first, with 10 items per page.
+- Stream items are embedded inline on the feed page (YouTube embeds are responsive).
+- Individual post and stream permalinks remain unchanged for SEO and sharing.
+- Old listing pages (`/blog/` and `/streams/`) now point readers to the combined feed.
 
 ## SEO
 
