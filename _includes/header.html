@@ -4,7 +4,15 @@
       <span class="logo">WV</span>
       <span class="brand-text">{{ site.title }}</span>
     </a>
-    <nav class="site-nav">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
+      <span class="nav-toggle-box" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+      <span class="nav-toggle-text">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-menu">
       <ul>
         {% for item in site.navigation %}
           <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a></li>

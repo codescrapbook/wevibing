@@ -21,7 +21,7 @@ permalink: /
 
 <div class="section">
   <div class="grid">
-    <div class="card" style="grid-column: span 7;">
+    <div class="card md-col-7">
       <h2>Latest on the blog</h2>
       <ul class="post-list">
         {% assign latest_posts = site.posts | slice: 0, 5 %}
@@ -34,7 +34,7 @@ permalink: /
       </ul>
       <p><a href="{{ '/feed/' | relative_url }}">View the Feed →</a></p>
     </div>
-    <div class="card" style="grid-column: span 5;">
+    <div class="card md-col-5">
       <h2>Upcoming & recent streams</h2>
       <ul class="stream-list">
         {% assign latest_streams = site.streams | sort: 'stream_date' | reverse | slice: 0, 4 %}
@@ -52,7 +52,7 @@ permalink: /
 
 <div class="section">
   <div class="grid">
-    <div class="card" style="grid-column: span 12;">
+    <div class="card md-col-12">
       <h2>Support We Vibing</h2>
       <p>Enjoy the content? Keep it going with a small monthly pledge. You’ll help fund streams, posts, and experiments.</p>
       <p><a class="pill" href="https://www.patreon.com/wevibing" target="_blank" rel="noopener">Become a Patron</a></p>

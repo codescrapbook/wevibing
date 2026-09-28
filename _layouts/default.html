@@ -11,12 +11,45 @@
     {% seo %}
   </head>
   <body>
+    <script>
+      // Add a class to enable enhanced JS behaviors (menu collapse) only when JS is available
+      document.documentElement.classList.add('js');
+    </script>
     <a class="skip-link" href="#content">Skip to content</a>
     {% include header.html %}
     <main id="content" class="container">
       {{ content }}
     </main>
     {% include footer.html %}
+    <script>
+      (function () {
+        const toggle = document.querySelector('.nav-toggle');
+        const menu = document.getElementById('site-menu');
+        if (!toggle || !menu) return;
+        const DESKTOP_BP = 960; // should match $bp-md in CSS
+        function setExpanded(isOpen) {
+          toggle.setAttribute('aria-expanded', String(isOpen));
+          document.body.classList.toggle('nav-open', isOpen);
+        }
+        toggle.addEventListener('click', function () {
+          const isOpen = toggle.getAttribute('aria-expanded') !== 'true';
+          setExpanded(isOpen);
+        });
+        // Close menu when focus leaves the menu and toggle on ESC
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') setExpanded(false);
+        });
+        // Ensure menu is open/visible on desktop and not stuck from a mobile toggle
+        function handleResize() {
+          if (window.innerWidth >= DESKTOP_BP) {
+            setExpanded(false);
+          }
+        }
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+        handleResize();
+      })();
+    </script>
   </body>
 </html>
 

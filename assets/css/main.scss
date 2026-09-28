@@ -155,3 +155,117 @@ img { max-width: 100%; height: auto; }
   .site-nav ul { gap: 10px; }
 }
 
+/* ===== Added: Mobile-first responsive enhancements ===== */
+/* Breakpoints */
+$bp-sm: 640px;
+$bp-md: 960px;
+$bp-lg: 1100px;
+
+/* Safer container padding with notches */
+.container {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+.site-header {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Header layout updates */
+.header-inner {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Toggle button (shown on small screens) */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.nav-toggle:hover { text-decoration: none; }
+.nav-toggle-box {
+  display: inline-flex; flex-direction: column; gap: 3px;
+}
+.nav-toggle-bar {
+  width: 18px; height: 2px; border-radius: 2px; background: currentColor; display: block;
+}
+.nav-toggle-text { font-size: 0.95rem; }
+
+/* Mobile-first nav: stacked links; hide when JS present and closed */
+.site-nav {
+  width: 100%;
+  margin-top: 8px;
+}
+.site-nav ul {
+  display: flex; flex-direction: column; gap: 6px;
+  align-items: stretch;
+}
+.site-nav a {
+  display: block;
+  color: var(--text);
+  padding: 12px 12px;
+  border-radius: 10px;
+  min-height: 44px; /* touch target */
+}
+.site-nav .cta a { text-align: center; }
+/* Scope collapsed nav to small screens only */
+$bp-md-down: ($bp-md - 1px);
+@media (max-width: $bp-md-down) {
+  .js .site-nav { display: none; }
+  .nav-open .site-nav { display: block; }
+}
+
+/* Grid: 1 column by default; 12-column at md+ */
+.grid { grid-template-columns: 1fr; }
+@media (min-width: $bp-md) {
+  .grid { grid-template-columns: repeat(12, 1fr); }
+}
+/* Grid span utilities (apply at md+) */
+@media (min-width: $bp-md) {
+  .md-col-12 { grid-column: span 12; }
+  .md-col-7 { grid-column: span 7; }
+  .md-col-5 { grid-column: span 5; }
+}
+
+/* Desktop nav restores horizontal layout and hides toggle */
+@media (min-width: $bp-md) {
+  .nav-toggle { display: none; }
+  .header-inner { flex-wrap: nowrap; }
+  .site-nav { width: auto; margin-top: 0; }
+  .site-nav ul { flex-direction: row; align-items: center; gap: 18px; }
+  .site-nav a { padding: 6px 10px; min-height: 0; display: inline-block; }
+  /* Force nav visible on desktop regardless of JS/body state */
+  .js .site-nav,
+  .nav-open .site-nav { display: block !important; }
+}
+
+/* Typography improvements */
+h1, h2, h3 { line-height: 1.2; overflow-wrap: anywhere; }
+.page .page-header h1,
+.post .post-header h1,
+.stream .stream-header h1 { font-size: clamp(26px, 5vw, 38px); }
+h2 { font-size: clamp(20px, 3.2vw, 28px); }
+h3 { font-size: clamp(18px, 2.6vw, 22px); }
+
+/* Feed page spacing and pagination */
+.feed-articles article { margin-bottom: 18px; }
+@media (min-width: $bp-sm) { .feed-articles article { margin-bottom: 24px; } }
+@media (min-width: $bp-md) { .feed-articles article { margin-bottom: 28px; } }
+.feed-articles .card { padding: 16px; }
+.pagination { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pagination .pill { display: inline-flex; }
+
