@@ -1,0 +1,74 @@
+title: "We Vibing"
+tagline: "Code with AI — vibe first, then agents and guardrails"
+description: "We Vibing teaches coding with AI: start with vibe coding, then agentic programming, guardrails, and beyond."
+url: "https://wevibing.com" # canonical domain
+baseurl: "" # empty for canonical; GitHub Pages adds baseurl via _config.pages.yml
+lang: en
+timezone: UTC
+
+author:
+  name: "Joe Seeley"
+
+permalink: /blog/:title/
+
+collections:
+  streams:
+    output: true
+    permalink: /streams/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "streams"
+    values:
+      layout: "stream"
+  - scope:
+      path: ""
+    values:
+      layout: "page"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-include-cache
+
+exclude:
+  - node_modules
+  - vendor
+  - script
+  - .devcontainer
+  - README.md
+  - Gemfile.lock
+
+sass:
+  style: compressed
+  sass_dir: assets/css
+
+feed:
+  path: feed.xml
+
+seo:
+  type: "Website"
+
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Blog"
+    url: "/blog/"
+  - title: "Streams"
+    url: "/streams/"
+  - title: "Projects"
+    url: "/projects/"
+  - title: "Book Club"
+    url: "/book-club/"
+  - title: "Support"
+    url: "/support/"
+  - title: "About"
+    url: "/about/"
+

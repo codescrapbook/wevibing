@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="logo">WV</span>
+      <span class="brand-text">{{ site.title }}</span>
+    </a>
+    <nav class="site-nav">
+      <ul>
+        {% for item in site.navigation %}
+          <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {% endfor %}
+        <li class="cta">
+          <a href="https://www.patreon.com/wevibing" target="_blank" rel="noopener">Support</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+

@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.excerpt %}<p class="post-excerpt">{{ page.excerpt }}</p>{% endif %}
+  </header>
+  <section class="post-body">
+    {{ content }}
+  </section>
+  <footer class="post-footer">
+    <a class="back-link" href="{{ '/blog/' | relative_url }}">&larr; Back to Blog</a>
+  </footer>
+</article>
+
