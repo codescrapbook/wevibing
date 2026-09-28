@@ -9,9 +9,9 @@ pagination:
   sort_reverse: true
 ---
 
-<div class="section">
+<div class="section feed-articles">
   {% for item in paginator.posts %}
-    <article class="{% if item.collection == 'streams' %}stream{% else %}post{% endif %}" style="margin-bottom: 28px;">
+    <article class="card {% if item.collection == 'streams' %}stream{% else %}post{% endif %}">
       <header class="{% if item.collection == 'streams' %}stream-header{% else %}post-header{% endif %}">
         <p class="{% if item.collection == 'streams' %}stream-meta{% else %}post-meta{% endif %}">
           {% assign display_date = item.date %}
@@ -24,8 +24,6 @@ pagination:
         </h2>
         {% if item.collection == 'streams' and item.description %}
           <p class="stream-description">{{ item.description }}</p>
-        {% elsif item.excerpt %}
-          <p class="post-excerpt">{{ item.excerpt }}</p>
         {% endif %}
       </header>
 
@@ -48,7 +46,7 @@ pagination:
 
 {% if paginator.total_pages > 1 %}
   <nav class="section" aria-label="Pagination">
-    <ul class="post-list" style="display: flex; gap: 10px; align-items: center;">
+    <ul class="post-list pagination">
       {% if paginator.previous_page %}
         <li><a class="pill" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a></li>
       {% endif %}
