@@ -21,35 +21,32 @@ permalink: /
 </section>
 
 <div class="section">
-  <div class="grid">
-    <div class="card md-col-7">
-      <h2>Latest on the blog</h2>
-      <ul class="post-list">
-        {% assign latest_posts = site.posts | slice: 0, 5 %}
-        {% for post in latest_posts %}
-          <li>
-            <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
-            <div class="muted">{{ post.date | date: "%b %-d, %Y" }}</div>
-          </li>
-        {% endfor %}
-      </ul>
-      <p><a href="{{ '/feed/' | relative_url }}">View the Feed →</a></p>
-    </div>
-    <div class="card md-col-5">
-      <h2>Upcoming & recent streams</h2>
-      <ul class="stream-list">
-        {% assign latest_streams = site.streams | sort: 'stream_date' | reverse | slice: 0, 4 %}
-        {% for stream in latest_streams %}
-          <li>
-            <a href="{{ stream.url | relative_url }}"><strong>{{ stream.title }}</strong></a>
-            {% if stream.stream_date %}<div class="muted">{{ stream.stream_date | date: "%b %-d, %Y" }}</div>{% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-      <p><a href="{{ '/feed/' | relative_url }}">View the Feed →</a></p>
+  <div class="card intro-card">
+    <h2>Why follow We Vibing</h2>
+    <div class="video-embed">
+      <video controls playsinline preload="metadata" poster="{{ '/assets/video/intro-poster.jpg' | relative_url }}">
+        <source src="{{ '/assets/video/intro.mp4' | relative_url }}" type="video/mp4" />
+        <track kind="captions" srclang="en" label="English" src="{{ '/assets/video/intro.vtt' | relative_url }}" default />
+      </video>
     </div>
   </div>
 </div>
+
+<div class="section" id="subscribe">
+  <div class="card subscribe-card">
+    <h2>Subscribe for notifications</h2>
+    <p>Get an email for upcoming book clubs, streams when they go live, and new blog posts.</p>
+    <form class="subscribe-form" data-subscribe data-endpoint="{{ site.subscribe.endpoint }}" novalidate>
+      <label class="sr-only" for="subscribe-email">Email</label>
+      <input id="subscribe-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">Email double opt-in. We send one confirmation message, and you are subscribed only after you open that link.</p>
+    <p class="subscribe-status" id="subscribe-status" role="status"></p>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/subscribe.js' | relative_url }}" defer></script>
 
 <div class="section">
   <div class="grid">

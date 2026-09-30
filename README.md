@@ -20,7 +20,15 @@ bundle install
 bundle exec jekyll serve --config _config.yml,_config.pages.yml
 ```
 
-Open `http://localhost:4000`.
+Open `http://localhost:4000/wevibing/` when serving with `_config.pages.yml`.
+
+Notifications use email double opt-in. Start the subscribe API in a second terminal:
+
+```bash
+SUBSCRIBE_DEV_MAILBOX=1 bundle exec ruby script/subscribe_server.rb
+```
+
+The homepage form posts to the `subscribe.endpoint` in `_config.yml` (`http://127.0.0.1:4001` by default). An address is stored as subscribed only after the confirmation link is opened. Without `SMTP_ADDRESS`, messages are written to `tmp/subscribe/mail` and listed at `http://127.0.0.1:4001/dev/mailbox`. To send real mail, set `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, and `MAIL_FROM`, and leave `SUBSCRIBE_DEV_MAILBOX` unset. Set `subscribe.endpoint` to the public API URL before deploying.
 
 ## Content model
 
