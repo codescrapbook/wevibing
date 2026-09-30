@@ -51,14 +51,13 @@ img { max-width: 100%; height: auto; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 0;
 }
-.brand { display: inline-flex; gap: 10px; align-items: center; color: var(--text); text-decoration: none; }
-.brand .logo {
-  display: inline-grid; place-items: center;
-  width: 36px; height: 36px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
-  color: white; font-weight: 800;
+.brand { display: inline-flex; align-items: center; color: var(--text); text-decoration: none; }
+.brand:hover { text-decoration: none; }
+.brand-logo {
+  display: block;
+  height: 72px;
+  width: auto;
 }
-.brand-text { font-weight: 700; letter-spacing: 0.2px; }
 .site-nav ul { display: flex; gap: 18px; align-items: center; list-style: none; padding: 0; margin: 0; }
 .site-nav a { color: var(--text); padding: 6px 10px; border-radius: 7px; }
 .site-nav a[aria-current="page"] { background: var(--bg-elev); border: 1px solid var(--border); }
@@ -290,6 +289,7 @@ $bp-md-down: ($bp-md - 1px);
 
 /* Desktop nav restores horizontal layout and hides toggle */
 @media (min-width: $bp-md) {
+  .brand-logo { height: 88px; }
   .nav-toggle { display: none; }
   .header-inner { flex-wrap: nowrap; }
   .site-nav { width: auto; margin-top: 0; }
