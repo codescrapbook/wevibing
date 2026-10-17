@@ -111,15 +111,26 @@ body.is-coming-soon {
 }
 .soon h1 {
   margin: 10px 0 12px;
-  max-width: 16ch;
-  font-size: clamp(36px, 6vw, 64px);
+  max-width: none;
+  font-size: clamp(36px, 4.8vw, 60px);
   letter-spacing: -0.03em;
+}
+.soon-line {
+  display: block;
+  white-space: nowrap;
 }
 .soon-accent {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+.soon-vibe {
+  background: linear-gradient(100deg, #fff 0%, #ffb3d4 38%, var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 10px 22px rgba(255, 92, 161, 0.45));
 }
 .soon-lead {
   margin: 0 auto;
@@ -380,7 +391,7 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
     padding: 24px 20px 40px;
   }
   .soon-logo { width: min(260px, 70vw); margin-bottom: 0; }
-  .soon h1 { font-size: clamp(32px, 8vw, 44px); margin: 6px 0 8px; }
+  .soon h1 { font-size: clamp(28px, 7vw, 36px); margin: 6px 0 8px; }
   .soon-lead { font-size: 1.02rem; }
   .soon-card { order: 1; margin-top: 18px; }
   .soon-pills { order: 2; margin-top: 16px; }
@@ -389,7 +400,7 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
 @media (min-width: $bp-md) {
   .soon {
     display: grid;
-    grid-template-columns: minmax(280px, 371px) minmax(320px, 520px);
+    grid-template-columns: minmax(200px, 320px) max-content;
     column-gap: 56px;
     row-gap: 8px;
     align-content: center;
@@ -403,9 +414,15 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
     width: 100%;
     margin: 0;
   }
-  .soon h1 { max-width: 12ch; margin: 0; }
+  .soon h1 { max-width: none; margin: 0; }
+  .soon-lead,
+  .soon-pills,
+  .soon-card {
+    width: min(520px, 100%);
+    max-width: 520px;
+  }
   .soon-lead { margin: 0; }
   .soon-pills { justify-content: flex-start; margin-top: 4px; }
-  .soon-card { width: 100%; margin-top: 8px; }
+  .soon-card { margin-top: 8px; }
 }
 

@@ -1,21 +1,24 @@
 <main id="content" class="soon">
   <img class="soon-logo" src="{{ '/assets/logo.png' | relative_url }}" alt="We Vibing" width="371" height="382" />
   <p class="soon-kicker">Coming soon</p>
-  <h1>Be first when we <span class="soon-accent">go live</span>.</h1>
+  <h1>
+    <span class="soon-line">Build with AI.</span>
+    <span class="soon-line soon-accent">Learn by shipping.</span>
+    <span class="soon-line soon-vibe">Keep vibing.</span>
+  </h1>
   <p class="soon-lead">
-    Vibe coding, agents, and guardrails — taught by shipping real things.
-    The launch note, live streams, and book club go to this list first.
+    Learn to build real software with AI, from your first vibe-coded project to agentic development.
+    Practical projects, lessons learned, and honest takes on where AI is headed.
   </p>
   <div class="pill-row soon-pills" aria-label="What you will get">
-    <span class="pill">Launch note</span>
-    <span class="pill">Live streams</span>
-    <span class="pill">Book club</span>
-    <span class="pill">New posts</span>
+    <span class="pill">Build real projects</span>
+    <span class="pill">AI coding agents</span>
+    <span class="pill">The future of AI</span>
   </div>
 
   <div class="card subscribe-card soon-card">
-    <h2>Save your spot</h2>
-    <p>One email when the doors open. Then the sessions and posts worth showing up for.</p>
+    <h2>Get in early</h2>
+    <p>One email when We Vibing launches. After that, get new projects, tutorials, live streams, and ideas worth thinking about.</p>
     <form class="subscribe-form" data-subscribe data-endpoint="{{ site.subscribe.endpoint }}" novalidate>
       <label class="sr-only" for="subscribe-email">Email</label>
       <input id="subscribe-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
