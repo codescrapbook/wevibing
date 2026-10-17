@@ -1,5 +1,9 @@
+---
+layout: null
+permalink: /robots.txt
+---
 User-agent: *
 Allow: /
-
+{% unless site.coming_soon %}
 Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
-
+{% endunless %}

@@ -43,6 +43,10 @@ The homepage form posts to the `subscribe.endpoint` in `_config.yml` (`http://12
 - Individual post and stream permalinks remain unchanged for SEO and sharing.
 - Old listing pages (`/blog/` and `/streams/`) now point readers to the combined feed.
 
+## Coming soon
+
+`coming_soon: true` in `_config.yml` replaces every public page with the launch splash (logo and email signup). Posts, streams, and the rest of the site stay in the repo. Set it to `false` and push to `main` to publish them again. `/confirm/` stays available so double opt-in still works. While the flag is on, `feed.xml` and `sitemap.xml` are left out of the build.
+
 ## SEO
 
 Configured with `jekyll-seo-tag`, `jekyll-sitemap`, and `jekyll-feed`. Canonical URL is `https://wevibing.com`.

@@ -3,6 +3,9 @@ tagline: "Code with AI — vibe first, then agents and guardrails"
 description: "We Vibing teaches coding with AI: start with vibe coding, then agentic programming, guardrails, and beyond."
 url: "https://wevibing.com" # canonical domain
 baseurl: "" # custom domain serves the site at the root of wevibing.com
+
+# Flip to false and redeploy to publish the full site.
+coming_soon: true
 lang: en
 timezone: UTC
 

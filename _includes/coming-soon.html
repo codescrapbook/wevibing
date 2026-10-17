@@ -1,0 +1,28 @@
+<main id="content" class="soon">
+  <img class="soon-logo" src="{{ '/assets/logo.png' | relative_url }}" alt="We Vibing" width="371" height="382" />
+  <p class="soon-kicker">Coming soon</p>
+  <h1>Be first when we <span class="soon-accent">go live</span>.</h1>
+  <p class="soon-lead">
+    Vibe coding, agents, and guardrails — taught by shipping real things.
+    The launch note, live streams, and book club go to this list first.
+  </p>
+  <div class="pill-row soon-pills" aria-label="What you will get">
+    <span class="pill">Launch note</span>
+    <span class="pill">Live streams</span>
+    <span class="pill">Book club</span>
+    <span class="pill">New posts</span>
+  </div>
+
+  <div class="card subscribe-card soon-card">
+    <h2>Save your spot</h2>
+    <p>One email when the doors open. Then the sessions and posts worth showing up for.</p>
+    <form class="subscribe-form" data-subscribe data-endpoint="{{ site.subscribe.endpoint }}" novalidate>
+      <label class="sr-only" for="subscribe-email">Email</label>
+      <input id="subscribe-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+      <button type="submit">Count me in</button>
+    </form>
+    <p class="subscribe-note">Email double opt-in. We send one confirmation message, and you are subscribed only after you open that link.</p>
+    <p class="subscribe-status" id="subscribe-status" role="status"></p>
+  </div>
+</main>
+<script src="{{ '/assets/js/subscribe.js' | relative_url }}" defer></script>

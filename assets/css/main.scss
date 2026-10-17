@@ -78,6 +78,64 @@ img { max-width: 100%; height: auto; }
 }
 .footer-inner .small { font-size: 0.9rem; opacity: 0.85; }
 
+/* Coming soon */
+body.is-coming-soon {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 12%, rgba(124, 92, 255, 0.38), transparent 62%),
+    radial-gradient(ellipse 42% 36% at 78% 22%, rgba(255, 92, 161, 0.2), transparent 58%),
+    linear-gradient(180deg, #07090d 0%, var(--bg) 46%, #0d131b 100%);
+}
+.soon {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px 64px;
+}
+.soon-logo {
+  width: min(371px, 86vw);
+  height: auto;
+  margin: 0 0 8px;
+  filter: drop-shadow(0 22px 48px rgba(124, 92, 255, 0.45));
+}
+.soon-kicker {
+  margin: 12px 0 0;
+  color: var(--brand-2);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.soon h1 {
+  margin: 10px 0 12px;
+  max-width: 16ch;
+  font-size: clamp(36px, 6vw, 64px);
+  letter-spacing: -0.03em;
+}
+.soon-accent {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.soon-lead {
+  margin: 0 auto;
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+.soon-pills { margin-top: 22px; }
+.soon-card {
+  width: min(560px, 100%);
+  margin-top: 28px;
+  text-align: left;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.soon-card p { color: var(--muted); }
+
 /* Home */
 .hero {
   padding: 72px 0 36px;
@@ -315,4 +373,39 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
 .feed-articles .card { padding: 16px; }
 .pagination { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .pagination .pill { display: inline-flex; }
+
+@media (max-width: ($bp-md - 1px)) {
+  .soon {
+    justify-content: flex-start;
+    padding: 24px 20px 40px;
+  }
+  .soon-logo { width: min(260px, 70vw); margin-bottom: 0; }
+  .soon h1 { font-size: clamp(32px, 8vw, 44px); margin: 6px 0 8px; }
+  .soon-lead { font-size: 1.02rem; }
+  .soon-card { order: 1; margin-top: 18px; }
+  .soon-pills { order: 2; margin-top: 16px; }
+}
+
+@media (min-width: $bp-md) {
+  .soon {
+    display: grid;
+    grid-template-columns: minmax(280px, 371px) minmax(320px, 520px);
+    column-gap: 56px;
+    row-gap: 8px;
+    align-content: center;
+    justify-content: center;
+    text-align: left;
+    padding: 32px 40px;
+  }
+  .soon-logo {
+    grid-row: 1 / span 5;
+    align-self: center;
+    width: 100%;
+    margin: 0;
+  }
+  .soon h1 { max-width: 12ch; margin: 0; }
+  .soon-lead { margin: 0; }
+  .soon-pills { justify-content: flex-start; margin-top: 4px; }
+  .soon-card { width: 100%; margin-top: 8px; }
+}
 

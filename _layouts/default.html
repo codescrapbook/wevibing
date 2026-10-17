@@ -3,25 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% assign coming_soon = false %}
+    {% if site.coming_soon and page.url != "/confirm/" %}
+      {% assign coming_soon = true %}
+    {% endif %}
+    {% unless coming_soon %}
     <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+    {% endunless %}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ '/assets/logo.png' | relative_url }}" type="image/png" />
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    {% if coming_soon %}
+    <title>Coming soon — {{ site.title }}</title>
+    <meta name="description" content="We Vibing is almost live. Join the list for the launch note, live streams, and the book club." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="{{ site.url }}/" />
+    {% else %}
     {% seo %}
+    {% endif %}
   </head>
-  <body>
+  <body{% if coming_soon %} class="is-coming-soon"{% endif %}>
     <script>
       // Add a class to enable enhanced JS behaviors (menu collapse) only when JS is available
       document.documentElement.classList.add('js');
     </script>
     <a class="skip-link" href="#content">Skip to content</a>
+    {% if coming_soon %}
+      {% include coming-soon.html %}
+    {% else %}
     {% include header.html %}
     <main id="content" class="container">
       {{ content }}
     </main>
     {% include footer.html %}
+    {% endif %}
+    {% unless coming_soon %}
     <script>
       (function () {
         const toggle = document.querySelector('.nav-toggle');
@@ -51,6 +69,7 @@
         handleResize();
       })();
     </script>
+    {% endunless %}
   </body>
 </html>
 
