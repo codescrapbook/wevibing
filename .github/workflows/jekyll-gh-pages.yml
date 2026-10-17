@@ -33,7 +33,7 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Build site
-        run: bundle exec jekyll build --config _config.yml,_config.pages.yml -d _site
+        run: bundle exec jekyll build --config _config.yml -d _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

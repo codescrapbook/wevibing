@@ -17,10 +17,10 @@ Clone and run:
 git clone https://github.com/codescrapbook/wevibing
 cd wevibing
 bundle install
-bundle exec jekyll serve --config _config.yml,_config.pages.yml
+bundle exec jekyll serve
 ```
 
-Open `http://localhost:4000/wevibing/` when serving with `_config.pages.yml`.
+Open `http://localhost:4000/`. The custom domain serves the site at the root, so local and production both use an empty `baseurl`.
 
 Notifications use email double opt-in. Start the subscribe API in a second terminal:
 
@@ -51,7 +51,7 @@ Configured with `jekyll-seo-tag`, `jekyll-sitemap`, and `jekyll-feed`. Canonical
 
 Workflow: `.github/workflows/jekyll-gh-pages.yml`
 - On push to `main` and `workflow_dispatch`
-- Builds with `_config.yml,_config.pages.yml` (so preview at `https://codescrapbook.github.io/wevibing/` works)
+- Builds with `_config.yml` only, so `baseurl` stays empty. `https://wevibing.com` serves files at the domain root; a `/wevibing` prefix makes CSS, images, and links 404 there. `https://codescrapbook.github.io/wevibing/` redirects to the custom domain and drops that path.
 - Uploads artifact and deploys via GitHub Pages
 - Sets CNAME to `wevibing.com` in deploy step
 
@@ -59,8 +59,8 @@ Required repo setting:
 - Settings → Pages → Build and deployment → Source: GitHub Actions
 - The first run may require approving the `github-pages` environment
 
-Expected Pages preview URL (until custom domain is live):
-- https://codescrapbook.github.io/wevibing/
+The `*.github.io` project URL redirects to the custom domain:
+- https://wevibing.com/
 
 ## Custom domain (wevibing.com)
 

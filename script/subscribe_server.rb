@@ -8,7 +8,7 @@
 #   SUBSCRIBE_PORT          default 4001
 #   SUBSCRIBE_HOST          default 0.0.0.0
 #   SUBSCRIBE_DATA_DIR      default tmp/subscribe
-#   SUBSCRIBE_CONFIRM_URL   default http://127.0.0.1:4000/wevibing/confirm/
+#   SUBSCRIBE_CONFIRM_URL   default http://127.0.0.1:4000/confirm/
 #   SUBSCRIBE_DEV_MAILBOX   set to 1 to expose captured mail at /dev/mailbox
 #   MAIL_FROM               default notifications@wevibing.com
 #   SMTP_ADDRESS, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_DOMAIN, SMTP_STARTTLS
@@ -25,7 +25,7 @@ ROOT = File.expand_path("..", __dir__)
 DATA_DIR = File.expand_path(ENV.fetch("SUBSCRIBE_DATA_DIR", "tmp/subscribe"), ROOT)
 STORE_PATH = File.join(DATA_DIR, "subscribers.json")
 MAIL_DIR = File.join(DATA_DIR, "mail")
-CONFIRM_URL = ENV.fetch("SUBSCRIBE_CONFIRM_URL", "http://127.0.0.1:4000/wevibing/confirm/")
+CONFIRM_URL = ENV.fetch("SUBSCRIBE_CONFIRM_URL", "http://127.0.0.1:4000/confirm/")
 MAIL_FROM = ENV.fetch("MAIL_FROM", "notifications@wevibing.com")
 DEV_MAILBOX = ENV["SUBSCRIBE_DEV_MAILBOX"] == "1"
 TOKEN_TTL = 48 * 60 * 60

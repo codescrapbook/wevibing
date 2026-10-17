@@ -2,7 +2,7 @@ title: "We Vibing"
 tagline: "Code with AI — vibe first, then agents and guardrails"
 description: "We Vibing teaches coding with AI: start with vibe coding, then agentic programming, guardrails, and beyond."
 url: "https://wevibing.com" # canonical domain
-baseurl: "" # empty for canonical; GitHub Pages adds baseurl via _config.pages.yml
+baseurl: "" # custom domain serves the site at the root of wevibing.com
 lang: en
 timezone: UTC
 
