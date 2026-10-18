@@ -138,9 +138,101 @@ body.is-coming-soon {
   color: var(--muted);
   font-size: 1.125rem;
 }
+.soon-offer {
+  width: min(624px, 100%);
+  max-width: 624px;
+  margin: 18px auto 0;
+  padding: 18px 20px 16px;
+  text-align: left;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.soon-offer-lead {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+.soon-offer-title {
+  margin: 8px 0 0;
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+.soon-offer-copy {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.soon-offer-copy strong { color: var(--text); }
+.soon-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.soon-price-amount {
+  font-size: clamp(42px, 6vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.soon-price-label {
+  color: var(--text);
+  font-weight: 700;
+}
+.soon-price-regular {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.soon-price-regular s { text-decoration-thickness: 2px; }
+.soon-offer h2 {
+  margin: 16px 0 6px;
+  font-size: 1rem;
+}
+.soon-offer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.soon-offer li {
+  position: relative;
+  margin: 0;
+  padding: 6px 0 6px 16px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.soon-offer li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+.soon-offer-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
 .soon-pills { margin-top: 22px; }
+.soon-pills:not(:has(.pill)) { display: none; }
 .soon-card {
-  width: min(560px, 100%);
+  width: min(624px, 100%);
   margin-top: 28px;
   text-align: left;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
@@ -409,20 +501,32 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
     padding: 32px 40px;
   }
   .soon-logo {
+    grid-column: 1;
     grid-row: 1 / span 5;
     align-self: center;
     width: 100%;
     margin: 0;
   }
-  .soon h1 { max-width: none; margin: 0; }
+  .soon-kicker,
+  .soon h1,
   .soon-lead,
+  .soon-offer,
   .soon-pills,
   .soon-card {
-    width: min(520px, 100%);
-    max-width: 520px;
+    grid-column: 2;
+    justify-self: start;
+  }
+  .soon h1 { max-width: none; margin: 0; }
+  .soon-lead,
+  .soon-offer,
+  .soon-pills,
+  .soon-card {
+    width: min(624px, 100%);
+    max-width: 624px;
   }
   .soon-lead { margin: 0; }
+  .soon-offer { margin: 18px 0 0; }
   .soon-pills { justify-content: flex-start; margin-top: 4px; }
-  .soon-card { margin-top: 8px; }
+  .soon-card { width: 100%; margin-top: 8px; }
 }
 
