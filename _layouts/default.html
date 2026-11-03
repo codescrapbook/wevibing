@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% assign coming_soon = false %}
-    {% if site.coming_soon and page.url != "/confirm/" %}
+    {% if site.coming_soon and page.url != "/confirm/" and page.coming_soon_exempt != true %}
       {% assign coming_soon = true %}
     {% endif %}
     {% unless coming_soon %}
@@ -22,6 +22,7 @@
     <link rel="canonical" href="{{ site.url }}/" />
     {% else %}
     {% seo %}
+    {% if page.noindex %}<meta name="robots" content="noindex" />{% endif %}
     {% endif %}
   </head>
   <body{% if coming_soon %} class="is-coming-soon"{% endif %}>
