@@ -169,35 +169,6 @@ body.is-coming-soon {
   line-height: 1.55;
 }
 .soon-offer-copy strong { color: var(--text); }
-.soon-price {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  margin: 18px 0 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.soon-price-amount {
-  font-size: clamp(42px, 6vw, 56px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.soon-price-label {
-  color: var(--text);
-  font-weight: 700;
-}
-.soon-price-regular {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-.soon-price-regular s { text-decoration-thickness: 2px; }
 .soon-offer h2 {
   margin: 16px 0 6px;
   font-size: 1rem;
@@ -311,12 +282,11 @@ body.is-coming-soon {
 .intro-card h2,
 .subscribe-card h2 { margin-top: 0; }
 .intro-card .video-embed { margin-top: 4px; }
-.subscribe-form,
-.confirm-form {
+.subscribe-form { margin-top: 14px; }
+.subscribe-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 14px;
 }
 .subscribe-form input[type="email"] {
   flex: 1 1 220px;
@@ -328,8 +298,7 @@ body.is-coming-soon {
   padding: 12px 14px;
   font: inherit;
 }
-.subscribe-form button,
-.confirm-form button {
+.subscribe-form button {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
   color: white;
   font-weight: 700;
@@ -339,8 +308,20 @@ body.is-coming-soon {
   cursor: pointer;
   font: inherit;
 }
-.subscribe-form button:disabled,
-.confirm-form button:disabled { opacity: 0.6; cursor: progress; }
+.subscribe-form button:disabled { opacity: 0.6; cursor: progress; }
+.subscribe-lists {
+  display: flex; flex-wrap: wrap; gap: 6px 18px;
+  margin: 12px 0 0; padding: 0; border: 0;
+}
+.check {
+  display: inline-flex; align-items: flex-start; gap: 8px;
+  color: var(--text); font-size: 0.95rem; line-height: 1.45; cursor: pointer;
+}
+.check input { margin: 0.2em 0 0; accent-color: var(--brand); width: 16px; height: 16px; flex: none; }
+.subscribe-consent { display: flex; margin-top: 10px; color: var(--muted); }
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.cf-turnstile { margin-top: 12px; }
+.cf-turnstile:empty { margin-top: 0; }
 .subscribe-note { color: var(--muted); margin: 10px 0 0; font-size: 0.95rem; }
 .subscribe-status { margin: 12px 0 0; min-height: 1.4em; }
 .subscribe-status.is-error { color: var(--danger); }
@@ -355,6 +336,49 @@ body.is-coming-soon {
 }
 
 .back-link { color: var(--muted); display: inline-block; margin-top: 18px; }
+
+/* Buttons */
+.button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 10px 18px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); font-weight: 700;
+}
+.btn:hover { text-decoration: none; border-color: var(--brand); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  border-color: transparent; color: white;
+}
+.btn-primary:hover { opacity: 0.95; border-color: transparent; }
+
+/* Schedule */
+.card-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.card-head h2 { margin: 0 0 8px; }
+.schedule-list { list-style: none; margin: 8px 0 0; padding: 0; }
+.schedule-item {
+  display: grid; grid-template-columns: 1fr; gap: 4px 20px;
+  padding: 14px 0; border-top: 1px solid var(--border);
+}
+.schedule-item:first-child { border-top: 0; }
+@media (min-width: 640px) {
+  .schedule-item { grid-template-columns: 190px 1fr; }
+}
+.schedule-when { display: flex; flex-direction: column; }
+.schedule-day { font-weight: 800; color: var(--text); }
+.schedule-time { color: var(--brand-2); font-weight: 600; font-size: 0.95rem; }
+.schedule-title { margin: 0; font-size: 1.1rem; }
+.schedule-what p { margin: 4px 0 0; }
+.schedule-list.is-compact .schedule-item { padding: 10px 0; }
+.tag {
+  display: inline-block; vertical-align: middle;
+  margin-left: 6px; padding: 1px 8px; border-radius: 999px;
+  border: 1px dashed var(--warn); color: var(--warn);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.twitch-embed { background: #000; }
+.page-header .subtitle { color: var(--muted); margin: 6px 0 0; }
+.post-summary p { margin: 8px 0; color: var(--muted); }
 
 /* Responsive */
 @media (max-width: 720px) {

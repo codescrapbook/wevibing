@@ -9,19 +9,23 @@ coming_soon: true
 lang: en
 timezone: UTC
 
-# Local double opt-in API. Point this at the public server when SMTP is configured.
+# Email notifications are handled by Relay (relay.whatdoyouwant.io), double opt-in.
+# The form posts here; the pk_live_ value is a public site key and is safe in the page.
+# Relay 303-redirects no-JS posts to /check-your-inbox/ or /subscribe-error/.
 subscribe:
-  endpoint: "http://127.0.0.1:4001"
+  endpoint: "https://relay.whatdoyouwant.io/f/pk_live_wevibing_8fa4114f5dcfc996a5b88ea5/subscribe"
+  # Cloudflare Turnstile TEST key (always passes). Swap for the real site key before launch.
+  turnstile_sitekey: "1x0000000000000000000000000000000AA"
+
+twitch:
+  channel: "wevibing"
+  url: "https://www.twitch.tv/wevibing"
+  schedule_url: "https://www.twitch.tv/wevibing/schedule"
 
 author:
   name: "Joe Seeley"
 
 permalink: /blog/:title/
-
-collections:
-  streams:
-    output: true
-    permalink: /streams/:title/
 
 defaults:
   - scope:
@@ -29,11 +33,6 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  - scope:
-      path: ""
-      type: "streams"
-    values:
-      layout: "stream"
   - scope:
       path: ""
     values:
@@ -71,14 +70,11 @@ seo:
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Feed"
-    url: "/feed/"
+  - title: "Schedule"
+    url: "/schedule/"
+  - title: "Blog"
+    url: "/blog/"
   - title: "Projects"
     url: "/projects/"
-  - title: "Book Club"
-    url: "/book-club/"
-  - title: "Support"
-    url: "/support/"
   - title: "About"
     url: "/about/"
-
