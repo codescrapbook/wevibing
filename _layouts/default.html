@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% assign coming_soon = false %}
-    {% if site.coming_soon and page.url != "/confirm/" and page.coming_soon_exempt != true %}
+    {% if site.coming_soon and page.coming_soon_exempt != true %}
       {% assign coming_soon = true %}
     {% endif %}
     {% unless coming_soon %}
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
     {% if coming_soon %}
     <title>Coming soon — {{ site.title }}</title>
-    <meta name="description" content="We Vibing is almost live. Join the list for the launch note, live streams, and the book club." />
+    <meta name="description" content="We Vibing is almost live. Free AI coding live streams on Twitch, a blog, and email alerts." />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href="{{ site.url }}/" />
     {% else %}

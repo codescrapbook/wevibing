@@ -1,6 +1,6 @@
 # We Vibing — Jekyll site
 
-This repository hosts the We Vibing site and blog.
+This repository hosts the We Vibing site: free AI coding live streams on Twitch, a blog, and email notifications.
 
 ## Local development
 
@@ -22,30 +22,27 @@ bundle exec jekyll serve
 
 Open `http://localhost:4000/`. The custom domain serves the site at the root, so local and production both use an empty `baseurl`.
 
-Notifications use email double opt-in. Start the subscribe API in a second terminal:
+## Email notifications (Relay)
 
-```bash
-SUBSCRIBE_DEV_MAILBOX=1 bundle exec ruby script/subscribe_server.rb
-```
+The signup form (`_includes/subscribe-form.html`, used on the homepage, `/schedule/`, and the coming-soon splash) posts to Relay at the `subscribe.endpoint` in `_config.yml`. Relay handles double opt-in, confirmation emails, and unsubscribes.
 
-The homepage form posts to the `subscribe.endpoint` in `_config.yml` (`http://127.0.0.1:4001` by default). An address is stored as subscribed only after the confirmation link is opened. Without `SMTP_ADDRESS`, messages are written to `tmp/subscribe/mail` and listed at `http://127.0.0.1:4001/dev/mailbox`. To send real mail, set `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, and `MAIL_FROM`, and leave `SUBSCRIBE_DEV_MAILBOX` unset. Set `subscribe.endpoint` to the public API URL before deploying.
+- Fields: `email`, `list` (`stream-alerts`, `new-post-notifications`), `consent=true`, `_gotcha` honeypot, `form_started_at`, `source_url`, and the Cloudflare Turnstile token (`cf-turnstile-response`).
+- Without JS the form posts directly and Relay 303-redirects to `/check-your-inbox/` or `/subscribe-error/`.
+- With JS, `assets/js/subscribe.js` sends one POST per checked list (Relay accepts one list per request) and shows the result inline.
+- `subscribe.turnstile_sitekey` is currently Cloudflare's test key; swap in the real site key before launch.
+- Result pages: `/check-your-inbox/`, `/subscribed/`, `/unsubscribed/`, `/subscribe-error/` (noindex, out of nav and sitemap, shown even while the splash is on).
+- Please don't submit test signups against the live Relay endpoint.
 
 ## Content model
 
-- Posts: `_posts/*.md` (standard Jekyll posts)
-- Streams: `_streams/*.md` (custom collection)
-- Pages: root-level `*.md` (`/about`, `/projects`, `/book-club`, `/support`)
- 
-## Combined Feed
-
-- The site now has a single combined feed at `/feed/` that lists both Posts and Streams together, newest first, with 10 items per page.
-- Stream items are embedded inline on the feed page (YouTube embeds are responsive).
-- Individual post and stream permalinks remain unchanged for SEO and sharing.
-- Old listing pages (`/blog/` and `/streams/`) now point readers to the combined feed.
+- Posts: `_posts/*.md` (standard Jekyll posts), listed and paginated at `/blog/` (10 per page)
+- Stream schedule: `_data/schedule.yml`, rendered on `/schedule/` (with the Twitch player) and as "Next streams" on the homepage. Times are America/Chicago (CT). Each slot has either a weekly `day` or a one-off `date`; past one-offs drop off on the next build.
+- Pages: root-level `*.md` (`/about/`, `/projects/`, `/support/`). `/support/` is optional Patreon donations, linked from the footer.
+- `/feed/` and `/streams/` are old URLs that redirect to `/blog/` and `/schedule/`.
 
 ## Coming soon
 
-`coming_soon: true` in `_config.yml` replaces every public page with the launch splash (logo and email signup). Posts, streams, and the rest of the site stay in the repo. Set it to `false` and push to `main` to publish them again. `/confirm/` stays available so double opt-in still works. While the flag is on, `feed.xml` and `sitemap.xml` are left out of the build.
+`coming_soon: true` in `_config.yml` replaces every public page with the launch splash (logo and email signup). Posts, the schedule, and the rest of the site stay in the repo. Set it to `false` and push to `main` to publish them again. Pages with `coming_soon_exempt: true` (the signup result pages) still render normally. While the flag is on, `feed.xml` and `sitemap.xml` are left out of the build.
 
 ## SEO
 
@@ -93,6 +90,7 @@ Production:
 
 Placeholders:
 - Patreon CTA uses `https://www.patreon.com/wevibing`
+- Patreon is optional donations only; everything on the site is free
 - Projects mention Uprightly and VitalPerks lightly
 
 ## Contributing

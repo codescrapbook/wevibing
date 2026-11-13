@@ -17,7 +17,7 @@
           <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a></li>
         {% endfor %}
         <li class="cta">
-          <a href="https://www.patreon.com/wevibing" target="_blank" rel="noopener">Support</a>
+          <a href="{{ site.twitch.url }}" target="_blank" rel="noopener">Follow on Twitch</a>
         </li>
       </ul>
     </nav>

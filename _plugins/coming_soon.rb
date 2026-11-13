@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# While coming_soon is on, keep post and stream URLs from leaking through
+# While coming_soon is on, keep post URLs from leaking through
 # the generated feed and sitemap. HTML pages are replaced in the layout.
 Jekyll::Hooks.register :site, :post_write do |site|
   next unless site.config["coming_soon"]
