@@ -17,9 +17,7 @@
     event.preventDefault();
     var email = (form.email.value || "").trim();
     var button = form.querySelector("button[type=submit]");
-    var lists = Array.prototype.slice
-      .call(form.querySelectorAll('input[name="list"]:checked'))
-      .map(function (input) { return input.value; });
+    var checkedLists = form.querySelectorAll('input[name="list[]"]:checked');
 
     if (!endpoint) {
       setStatus("Notifications are not configured yet.", true);
@@ -29,8 +27,8 @@
       setStatus("Enter a valid email address.", true);
       return;
     }
-    if (!lists.length) {
-      setStatus("Pick at least one kind of email.", true);
+    if (!checkedLists.length) {
+      setStatus("Pick at least one kind of email: stream alerts or new blog posts.", true);
       return;
     }
     if (!form.consent.checked) {
@@ -41,30 +39,30 @@
     button.disabled = true;
     setStatus("Sending…", false);
 
-    // Relay accepts only ONE list per request, so we send one POST per checked list.
-    // Note: Relay's resend throttle may skip the second confirmation email for the same
-    // address. Switch this to a single multi-list request once Relay supports it.
-    // Each POST also needs its own Turnstile token (tokens are single-use), so the
-    // widget is reset and re-solved between requests.
-    var chain = Promise.resolve([]);
-    lists.forEach(function (list, index) {
-      chain = chain.then(function (results) {
-        var tokenReady = index === 0 ? Promise.resolve() : freshTurnstileToken();
-        return tokenReady
-          .then(function () { return post(list); })
-          .then(function (result) { return results.concat([result]); });
-      });
-    });
-
-    chain
-      .then(function (results) {
-        var failed = results.filter(function (r) { return !r.ok; });
-        if (!failed.length) {
+    // One request with every checked list (list[]). Relay sends a single
+    // confirmation email that covers all of the chosen lists.
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(form)
+    })
+      .then(function (response) {
+        return response.json().then(
+          function (body) {
+            return { ok: response.ok && body && body.ok !== false, message: body && body.message };
+          },
+          function () {
+            return { ok: response.ok, message: null };
+          }
+        );
+      })
+      .then(function (result) {
+        if (result.ok) {
           setStatus("Check your inbox to confirm.", false);
           form.reset();
           if (startedAt) startedAt.value = String(Date.now());
         } else {
-          setStatus(failed[0].message || "Something went wrong. Please try again.", true);
+          setStatus(result.message || "Something went wrong. Please try again.", true);
         }
       })
       .catch(function () {
@@ -72,54 +70,13 @@
       })
       .then(function () {
         button.disabled = false;
-        resetTurnstile();
+        // Turnstile tokens are single-use; get a fresh one for any later submit.
+        var widget = form.querySelector(".cf-turnstile");
+        if (window.turnstile && widget) {
+          try { window.turnstile.reset(widget); } catch (e) {}
+        }
       });
   });
-
-  function post(list) {
-    var data = new FormData(form);
-    data.delete("list");
-    data.append("list", list);
-    return fetch(endpoint, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: data
-    }).then(function (response) {
-      return response.json().then(
-        function (body) {
-          return { ok: response.ok && body && body.ok !== false, message: body && body.message };
-        },
-        function () {
-          return { ok: response.ok, message: null };
-        }
-      );
-    });
-  }
-
-  function resetTurnstile() {
-    if (window.turnstile && form.querySelector(".cf-turnstile")) {
-      try { window.turnstile.reset(form.querySelector(".cf-turnstile")); } catch (e) {}
-    }
-  }
-
-  // Reset the widget and wait (up to 15s) for a new token.
-  function freshTurnstileToken() {
-    var widget = form.querySelector(".cf-turnstile");
-    if (!window.turnstile || !widget) return Promise.resolve();
-    resetTurnstile();
-    return new Promise(function (resolve) {
-      var waited = 0;
-      var timer = setInterval(function () {
-        waited += 250;
-        var token = "";
-        try { token = window.turnstile.getResponse(widget) || ""; } catch (e) {}
-        if (token || waited >= 15000) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 250);
-    });
-  }
 
   function setStatus(message, isError) {
     if (!status) return;

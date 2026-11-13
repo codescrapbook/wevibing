@@ -26,9 +26,9 @@ Open `http://localhost:4000/`. The custom domain serves the site at the root, so
 
 The signup form (`_includes/subscribe-form.html`, used on the homepage, `/schedule/`, and the coming-soon splash) posts to Relay at the `subscribe.endpoint` in `_config.yml`. Relay handles double opt-in, confirmation emails, and unsubscribes.
 
-- Fields: `email`, `list` (`stream-alerts`, `new-post-notifications`), `consent=true`, `_gotcha` honeypot, `form_started_at`, `source_url`, and the Cloudflare Turnstile token (`cf-turnstile-response`).
+- Fields: `email`, `list[]` checkboxes (`stream-alerts`, `new-post-notifications`), `consent=true`, `_gotcha` honeypot, `form_started_at`, `source_url`, and the Cloudflare Turnstile token (`cf-turnstile-response`).
 - Without JS the form posts directly and Relay 303-redirects to `/check-your-inbox/` or `/subscribe-error/`.
-- With JS, `assets/js/subscribe.js` sends one POST per checked list (Relay accepts one list per request) and shows the result inline.
+- Both lists go in one request (`list[]`), with or without JS, and Relay sends one confirmation email covering all chosen lists. With JS, `assets/js/subscribe.js` posts the same fields as a single FormData request (`Accept: application/json`) and shows the result inline.
 - `subscribe.turnstile_sitekey` is currently Cloudflare's test key; swap in the real site key before launch.
 - Result pages: `/check-your-inbox/`, `/subscribed/`, `/unsubscribed/`, `/subscribe-error/` (noindex, out of nav and sitemap, shown even while the splash is on).
 - Please don't submit test signups against the live Relay endpoint.
