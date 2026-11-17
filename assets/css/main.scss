@@ -61,8 +61,28 @@ img { max-width: 100%; height: auto; }
 .site-nav ul { display: flex; gap: 18px; align-items: center; list-style: none; padding: 0; margin: 0; }
 .site-nav a { color: var(--text); padding: 6px 10px; border-radius: 7px; }
 .site-nav a[aria-current="page"] { background: var(--bg-elev); border: 1px solid var(--border); }
-.site-nav .cta a { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%); color: white; font-weight: 700; }
-.site-nav .cta a:hover { opacity: 0.95; text-decoration: none; }
+.site-nav .cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.site-nav .cta-primary {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: white;
+  font-weight: 700;
+}
+.site-nav .cta-primary:hover { opacity: 0.95; text-decoration: none; }
+.site-nav .cta-secondary {
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+.site-nav .cta-secondary:hover {
+  border-color: var(--brand);
+  text-decoration: none;
+}
 
 /* Footer */
 .site-footer {
@@ -452,7 +472,9 @@ $bp-lg: 1100px;
   border-radius: 10px;
   min-height: 44px; /* touch target */
 }
-.site-nav .cta a { text-align: center; }
+.site-nav .cta-group { flex-direction: column; align-items: stretch; margin-top: 4px; }
+.site-nav .cta-primary,
+.site-nav .cta-secondary { text-align: center; }
 /* Scope collapsed nav to small screens only */
 $bp-md-down: ($bp-md - 1px);
 @media (max-width: $bp-md-down) {
@@ -478,11 +500,21 @@ $bp-md-down: ($bp-md - 1px);
   .nav-toggle { display: none; }
   .header-inner { flex-wrap: nowrap; }
   .site-nav { width: auto; margin-top: 0; }
-  .site-nav ul { flex-direction: row; align-items: center; gap: 18px; }
+  .site-nav ul { flex-direction: row; align-items: center; gap: 10px; }
   .site-nav a { padding: 6px 10px; min-height: 0; display: inline-block; }
+  .site-nav .cta-group { flex-direction: row; flex-wrap: nowrap; margin-top: 0; margin-left: 4px; }
+  .site-nav .cta-primary,
+  .site-nav .cta-secondary { white-space: nowrap; }
   /* Force nav visible on desktop regardless of JS/body state */
   .js .site-nav,
   .nav-open .site-nav { display: block !important; }
+}
+
+/* Tight header on mid-size desktops so two CTAs don't overflow */
+@media (min-width: $bp-md) and (max-width: 1199px) {
+  .brand-logo { height: 72px; }
+  .site-nav ul { gap: 6px; }
+  .site-nav a { padding: 6px 8px; }
 }
 
 /* Typography improvements */

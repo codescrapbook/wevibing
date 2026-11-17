@@ -16,8 +16,9 @@
         {% for item in site.navigation %}
           <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a></li>
         {% endfor %}
-        <li class="cta">
-          <a href="{{ site.twitch.url }}" target="_blank" rel="noopener">Follow on Twitch</a>
+        <li class="cta-group">
+          <a class="cta-primary" href="{{ site.twitch.url }}" target="_blank" rel="noopener">Follow on Twitch</a>
+          <a class="cta-secondary" href="{{ site.patreon.url }}" target="_blank" rel="noopener">Patreon</a>
         </li>
       </ul>
     </nav>

@@ -29,7 +29,7 @@ The signup form (`_includes/subscribe-form.html`, used on the homepage, `/schedu
 - Fields: `email`, `list[]` checkboxes (`stream-alerts`, `new-post-notifications`), `consent=true`, `_gotcha` honeypot, `form_started_at`, `source_url`, and the Cloudflare Turnstile token (`cf-turnstile-response`).
 - Without JS the form posts directly and Relay 303-redirects to `/check-your-inbox/` or `/subscribe-error/`.
 - Both lists go in one request (`list[]`), with or without JS, and Relay sends one confirmation email covering all chosen lists. With JS, `assets/js/subscribe.js` posts the same fields as a single FormData request (`Accept: application/json`) and shows the result inline.
-- `subscribe.turnstile_sitekey` is currently Cloudflare's test key; swap in the real site key before launch.
+- `subscribe.turnstile_sitekey` is the Cloudflare Turnstile site key for wevibing.com and www.wevibing.com (managed-mode widget). The token is posted in `cf-turnstile-response`.
 - Result pages: `/check-your-inbox/`, `/subscribed/`, `/unsubscribed/`, `/subscribe-error/` (noindex, out of nav and sitemap, shown even while the splash is on).
 - Please don't submit test signups against the live Relay endpoint.
 
