@@ -1,60 +1,17 @@
 ---
-layout: page
-title: Feed
-pagination:
-  enabled: true
-  per_page: 10
-  collection: posts, streams
-  sort_field: "date"
-  sort_reverse: true
+layout: null
+sitemap: false
 ---
-
-<div class="section feed-articles">
-  {% for item in paginator.posts %}
-    <article class="card {% if item.collection == 'streams' %}stream{% else %}post{% endif %}">
-      <header class="{% if item.collection == 'streams' %}stream-header{% else %}post-header{% endif %}">
-        <p class="{% if item.collection == 'streams' %}stream-meta{% else %}post-meta{% endif %}">
-          {% assign display_date = item.date %}
-          {% if item.collection == 'streams' and item.stream_date %}{% assign display_date = item.stream_date %}{% endif %}
-          {{ display_date | date: "%b %-d, %Y" }}
-          {% if item.collection == 'streams' %} · Live Stream{% endif %}
-        </p>
-        <h2 class="{% if item.collection == 'streams' %}stream-title{% else %}post-title{% endif %}">
-          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        </h2>
-        {% if item.collection == 'streams' and item.description %}
-          <p class="stream-description">{{ item.description }}</p>
-        {% endif %}
-      </header>
-
-      <section class="{% if item.collection == 'streams' %}stream-body{% else %}post-body{% endif %}">
-        {% if item.collection == 'streams' and item.video_url %}
-          <div class="video-embed">
-            <iframe src="{{ item.video_url | replace: 'watch?v=', 'embed/' }}" title="{{ item.title }}" frameborder="0" allowfullscreen></iframe>
-          </div>
-        {% endif %}
-        {% unless item.collection == 'streams' %}
-          <div class="post-summary">
-            {{ item.excerpt | default: item.content | strip_html | truncatewords: 80 }}
-            <div><a href="{{ item.url | relative_url }}">Read more →</a></div>
-          </div>
-        {% endunless %}
-      </section>
-    </article>
-  {% endfor %}
-</div>
-
-{% if paginator.total_pages > 1 %}
-  <nav class="section" aria-label="Pagination">
-    <ul class="post-list pagination">
-      {% if paginator.previous_page %}
-        <li><a class="pill" href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a></li>
-      {% endif %}
-      <li class="muted">Page {{ paginator.page }} of {{ paginator.total_pages }}</li>
-      {% if paginator.next_page %}
-        <li><a class="pill" href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a></li>
-      {% endif %}
-    </ul>
-  </nav>
-{% endif %}
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Moved to {{ site.title }} Blog</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="{{ '/blog/' | absolute_url }}" />
+    <meta http-equiv="refresh" content="0; url={{ '/blog/' | relative_url }}" />
+  </head>
+  <body>
+    <p>This page has moved to <a href="{{ '/blog/' | relative_url }}">{{ '/blog/' | absolute_url }}</a>.</p>
+  </body>
+</html>

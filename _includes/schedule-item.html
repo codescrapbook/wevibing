@@ -1,0 +1,14 @@
+{%- assign s = include.s -%}
+{%- assign start_time = "2000-01-01 " | append: s.start | date: "%-I:%M %p" -%}
+<li class="schedule-item">
+  <div class="schedule-when">
+    <span class="schedule-day">{% if s.day %}{{ s.day }}s{% else %}{{ s.date | date: "%a, %b %-d" }}{% endif %}</span>
+    <span class="schedule-time">{{ start_time }} CT{% if s.duration_minutes %} · {{ s.duration_minutes }} min{% endif %}</span>
+  </div>
+  <div class="schedule-what">
+    <h3 class="schedule-title">{{ s.title }}{% if s.example %} <span class="tag">Example</span>{% endif %}</h3>
+    {%- if s.description and include.compact != true %}
+    <p class="muted">{{ s.description }}</p>
+    {%- endif %}
+  </div>
+</li>

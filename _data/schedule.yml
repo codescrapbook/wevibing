@@ -1,0 +1,27 @@
+# Twitch stream schedule for https://www.twitch.tv/wevibing
+# Shown on /schedule/ and in "Next streams" on the homepage.
+#
+# Times are America/Chicago (shown as CT). Use 24-hour "HH:MM" for start.
+# Each slot is EITHER recurring (set `day`, e.g. Tuesday) OR a one-off (set `date`, YYYY-MM-DD).
+# One-off slots disappear from the site once their date has passed (on the next build).
+#
+# EXAMPLE ENTRIES: replace these with the real schedule, then remove `example: true`.
+slots:
+  - title: "Vibe Coding Live"
+    day: "Tuesday"
+    start: "19:00"
+    duration_minutes: 90
+    description: "Build something small, fast, live with AI coding tools. Bring questions."
+    example: true
+  - title: "Build in Public: Uprightly & VitalPerks"
+    day: "Thursday"
+    start: "19:00"
+    duration_minutes: 90
+    description: "Real product work on Uprightly and VitalPerks with AI agents, guardrails and evals."
+    example: true
+  - title: "Agents Deep Dive"
+    date: "2026-12-05"
+    start: "11:00"
+    duration_minutes: 120
+    description: "A longer Saturday session wiring up tools, memory and evals for an AI agent."
+    example: true

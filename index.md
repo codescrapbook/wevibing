@@ -6,11 +6,10 @@ permalink: /
 ---
 
 <section class="hero">
-  <h1>Code with AI. Start with vibe coding, then build agents with guardrails.</h1>
+  <h1>Code with AI, live. Start with vibe coding, then build agents with guardrails.</h1>
   <p>
-    We Vibing teaches practical AI development: from quick vibes and prompts to
-    robust agentic systems, evals, and safety. Follow along with posts, join live streams,
-    and read with our AI book club.
+    We Vibing is a free place to learn practical AI development: live coding streams on Twitch,
+    a blog with what we learn, and real products built in public.
   </p>
   <div class="pill-row">
     <span class="pill">Vibe Coding</span>
@@ -19,6 +18,20 @@ permalink: /
     <span class="pill">Real Products</span>
   </div>
 </section>
+
+<div class="section">
+  <div class="card next-streams">
+    <div class="card-head">
+      <h2>Next streams</h2>
+      <a href="{{ '/schedule/' | relative_url }}">Full schedule →</a>
+    </div>
+    {% include schedule-list.html limit=3 compact=true %}
+    <div class="button-row">
+      <a class="btn btn-primary" href="{{ site.twitch.url }}" target="_blank" rel="noopener">Follow on Twitch</a>
+      <a class="btn" href="{{ '/schedule/' | relative_url }}">See the schedule</a>
+    </div>
+  </div>
+</div>
 
 <div class="section">
   <div class="card intro-card">
@@ -35,26 +48,15 @@ permalink: /
 <div class="section" id="subscribe">
   <div class="card subscribe-card">
     <h2>Subscribe for notifications</h2>
-    <p>Get an email for upcoming book clubs, streams when they go live, and new blog posts.</p>
-    <form class="subscribe-form" data-subscribe data-endpoint="{{ site.subscribe.endpoint }}" novalidate>
-      <label class="sr-only" for="subscribe-email">Email</label>
-      <input id="subscribe-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="subscribe-note">Email double opt-in. We send one confirmation message, and you are subscribed only after you open that link.</p>
-    <p class="subscribe-status" id="subscribe-status" role="status"></p>
+    <p>Get an email when a stream is scheduled or goes live, and when new blog posts come out.</p>
+    {% include subscribe-form.html %}
   </div>
 </div>
-
-<script src="{{ '/assets/js/subscribe.js' | relative_url }}" defer></script>
 
 <div class="section">
-  <div class="grid">
-    <div class="card md-col-12">
-      <h2>Support We Vibing</h2>
-      <p>Enjoy the content? Keep it going with a small monthly pledge. You’ll help fund streams, posts, and experiments.</p>
-      <p><a class="pill" href="https://www.patreon.com/wevibing" target="_blank" rel="noopener">Become a Patron</a></p>
-    </div>
+  <div class="card">
+    <h2>Support We Vibing</h2>
+    <p>Everything here is totally free. If you'd like to chip in, an optional Patreon pledge helps cover streaming gear and hosting.</p>
+    <p><a class="pill" href="https://www.patreon.com/wevibing" target="_blank" rel="noopener">Chip in on Patreon</a></p>
   </div>
 </div>
-

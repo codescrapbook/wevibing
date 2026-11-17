@@ -1,0 +1,37 @@
+{%- comment -%}
+  Email signup form, posted to Relay (site.subscribe.endpoint).
+  Works without JS (Relay 303-redirects to /check-your-inbox/ or /subscribe-error/);
+  assets/js/subscribe.js enhances it with in-page status messages.
+  Params: include.button (button label, optional).
+{%- endcomment -%}
+<form class="subscribe-form" data-subscribe method="post" action="{{ site.subscribe.endpoint }}">
+  <div class="subscribe-row">
+    <label class="sr-only" for="subscribe-email">Email</label>
+    <input id="subscribe-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+    <button type="submit">{{ include.button | default: "Subscribe" }}</button>
+  </div>
+  <fieldset class="subscribe-lists">
+    <legend class="sr-only">Emails to get</legend>
+    <label class="check"><input type="checkbox" name="list[]" value="stream-alerts" checked /> Stream alerts</label>
+    <label class="check"><input type="checkbox" name="list[]" value="new-post-notifications" checked /> New blog posts</label>
+  </fieldset>
+  <label class="check subscribe-consent">
+    <input type="checkbox" name="consent" value="true" required />
+    <span>Send me stream alerts and new-post emails. I can unsubscribe at any time.</span>
+  </label>
+  <div class="hp-field" aria-hidden="true">
+    <label for="subscribe-gotcha">Leave this field empty</label>
+    <input id="subscribe-gotcha" type="text" name="_gotcha" value="" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="form_started_at" value="" data-form-started-at />
+  <input type="hidden" name="source_url" value="{{ page.url | absolute_url }}" data-source-url />
+  {%- if site.subscribe.turnstile_sitekey %}
+  <div class="cf-turnstile" data-sitekey="{{ site.subscribe.turnstile_sitekey }}" data-theme="dark" data-size="flexible"></div>
+  {%- endif %}
+</form>
+<p class="subscribe-note">Double opt-in: we send one confirmation email, and you're subscribed only after you click the link in it.</p>
+<p class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></p>
+{%- if site.subscribe.turnstile_sitekey %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{%- endif %}
+<script src="{{ '/assets/js/subscribe.js' | relative_url }}" defer></script>

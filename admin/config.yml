@@ -18,7 +18,7 @@ display_url: "https://wevibing.com"
 collections:
   - name: "posts"
     label: "Posts"
-    description: "Appears in the combined Feed alongside Streams."
+    description: "Blog posts, listed on /blog/."
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -27,18 +27,26 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
-  - name: "streams"
-    label: "Streams"
-    description: "Appears in the combined Feed alongside Posts."
-    folder: "_streams"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Stream Date", name: "stream_date", widget: "date", required: false }
-      - { label: "Video URL (YouTube)", name: "video_url", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: false }
+  - name: "schedule"
+    label: "Stream schedule"
+    files:
+      - label: "Twitch schedule"
+        name: "schedule"
+        file: "_data/schedule.yml"
+        description: "Times are America/Chicago (CT). Use Day for a weekly slot or Date for a one-off."
+        fields:
+          - label: "Slots"
+            name: "slots"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.day}}{{fields.date}} {{fields.start}})"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Weekly day", name: "day", widget: "select", required: false, options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
+              - { label: "One-off date", name: "date", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Start (24h HH:MM, CT)", name: "start", widget: "string", pattern: ["^([01][0-9]|2[0-3]):[0-5][0-9]$", "Use 24-hour HH:MM, e.g. 19:00"] }
+              - { label: "Duration (minutes)", name: "duration_minutes", widget: "number", value_type: "int", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Example entry", name: "example", widget: "boolean", required: false, default: false }
   - name: "pages"
     label: "Pages"
     files:
@@ -51,12 +59,6 @@ collections:
       - label: "Projects"
         name: "projects"
         file: "projects.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Book Club"
-        name: "book-club"
-        file: "book-club.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }

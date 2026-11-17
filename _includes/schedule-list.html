@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders _data/schedule.yml. Params: include.limit (optional), include.compact (optional).
+  Recurring slots (day) are listed first, then upcoming one-offs (date >= build date).
+{%- endcomment -%}
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign recurring = site.data.schedule.slots | where_exp: "s", "s.day" -%}
+{%- assign dated = site.data.schedule.slots | where_exp: "s", "s.date" | sort: "date" -%}
+{%- assign limit = include.limit | default: 100 -%}
+{%- assign shown = 0 -%}
+{%- capture items -%}
+  {%- for s in recurring -%}
+    {%- if shown < limit -%}{%- assign shown = shown | plus: 1 -%}{%- include schedule-item.html s=s compact=include.compact -%}{%- endif -%}
+  {%- endfor -%}
+  {%- for s in dated -%}
+    {%- assign d = s.date | date: "%Y-%m-%d" -%}
+    {%- if d >= today and shown < limit -%}{%- assign shown = shown | plus: 1 -%}{%- include schedule-item.html s=s compact=include.compact -%}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if shown > 0 -%}
+<ul class="schedule-list{% if include.compact %} is-compact{% endif %}">
+{{ items }}
+</ul>
+{%- else -%}
+<p class="muted">No streams on the calendar right now. Follow on Twitch to get notified when the next one is scheduled.</p>
+{%- endif -%}
