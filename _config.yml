@@ -18,9 +18,9 @@ subscribe:
   turnstile_sitekey: "0x4AAAAAAGE-WNlrbZ4brp6k"
 
 twitch:
-  channel: "wevibing"
-  url: "https://www.twitch.tv/wevibing"
-  schedule_url: "https://www.twitch.tv/wevibing/schedule"
+  channel: "seeleyvibing"
+  url: "https://www.twitch.tv/seeleyvibing"
+  schedule_url: "https://www.twitch.tv/seeleyvibing/schedule"
 
 patreon:
   url: "https://www.patreon.com/wevibing"
