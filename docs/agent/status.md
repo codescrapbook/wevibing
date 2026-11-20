@@ -14,7 +14,7 @@ Updated: 2026-11-20
 
 ## In flight
 
-- Cookie notice / privacy links / consent banner PR (this work).
+- Cookie notice / privacy links / consent banner: [#9](https://github.com/codescrapbook/wevibing/pull/9).
 
 ## Known issues / gotchas
 
