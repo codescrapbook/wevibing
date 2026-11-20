@@ -1,0 +1,15 @@
+---
+description: Twitch schedule data and embed constraints
+globs:
+  - "_data/schedule.yml"
+  - "_includes/schedule*.html"
+  - "schedule.md"
+  - "admin/config.yml"
+alwaysApply: false
+---
+
+- Source of truth: `_data/schedule.yml` `slots`. Times are America/Chicago, shown as CT. `start` is 24-hour `HH:MM`.
+- Each slot is weekly `day` (Monday–Sunday) **or** one-off `date` (`YYYY-MM-DD`), not both. Recurring slots list first; one-offs with `date <` build date are omitted.
+- Real slots must not keep `example: true` (renders an Example tag).
+- Twitch player `parent=` must stay `wevibing.com` and `www.wevibing.com`. Channel comes from `site.twitch.channel`. Localhost embed errors are expected.
+- Edit the channel only in `_config.yml` `twitch.*`. Username `wevibing` is taken; use `seeleyvibing`.

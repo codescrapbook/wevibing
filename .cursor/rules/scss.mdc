@@ -1,0 +1,11 @@
+---
+description: SCSS theme, breakpoints, and mobile nav contract
+globs:
+  - "assets/css/**/*.scss"
+alwaysApply: false
+---
+
+- All site CSS is `assets/css/main.scss` (Jekyll compiles to `/assets/css/main.css`). Dark theme tokens live on `:root` (`--bg`, `--brand`, `--brand-2`, `--container: 1100px`).
+- `$bp-md: 960px` is the desktop nav breakpoint. `_layouts/default.html` uses `DESKTOP_BP = 960` — keep them in sync.
+- Mobile nav is progressive enhancement: without JS the links stay visible; with JS the menu collapses. Keep tap targets usable on small screens.
+- Prefer existing utility/card/button classes over new one-off layout. Do not introduce a CSS framework.

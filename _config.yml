@@ -59,6 +59,10 @@ exclude:
   - .devcontainer
   - README.md
   - Gemfile.lock
+  - AGENTS.md
+  - docs
+  - .cursor
+  - .cursorignore
 
 sass:
   style: compressed
