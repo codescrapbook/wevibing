@@ -2,6 +2,8 @@
 
 This repository hosts the We Vibing site: free AI coding live streams on Twitch, a blog, and email notifications.
 
+AI coding agents: start at [AGENTS.md](AGENTS.md) and [docs/agent/status.md](docs/agent/status.md).
+
 ## Local development
 
 Prereqs:

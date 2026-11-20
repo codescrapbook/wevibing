@@ -1,0 +1,18 @@
+---
+description: Jekyll pages, posts, layouts, and Liquid conventions
+globs:
+  - "**/*.html"
+  - "**/*.md"
+  - "_layouts/**"
+  - "_includes/**"
+alwaysApply: false
+---
+
+- Layouts: `default.html` (chrome + coming-soon swap) → `page.html` / `post.html`. Redirect stubs use `layout: null`.
+- Splash swap is in `_layouts/default.html` (`site.coming_soon` and `page.coming_soon_exempt`). `_plugins/coming_soon.rb` only deletes `feed.xml` and `sitemap.xml`.
+- Signup result pages must keep `noindex: true`, `sitemap: false`, and `coming_soon_exempt: true`.
+- Link with `relative_url` / `absolute_url`. Nav is `_config.yml` `navigation`, not hardcoded lists.
+- Posts live in `_posts/YYYY-MM-DD-slug.md`. Permalink is `/blog/<filename-slug>/` (`permalink: /blog/:title/` uses the filename slug, not the display title). Optional `excerpt`.
+- Homepage uses `hide_title: true`. `/support/` is footer-only.
+- `/feed/` and `/streams/` are redirects; do not rebuild a combined feed or a `streams` collection.
+- Reuse `_includes/subscribe-form.html` and `_includes/schedule-list.html` instead of copying markup.

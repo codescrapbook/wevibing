@@ -1,0 +1,17 @@
+---
+description: Relay signup form contract and Turnstile behavior
+globs:
+  - "_includes/subscribe-form.html"
+  - "assets/js/subscribe.js"
+  - "**/subscribe*.md"
+  - "check-your-inbox.md"
+  - "subscribed.md"
+  - "unsubscribed.md"
+alwaysApply: false
+---
+
+- Form posts to `site.subscribe.endpoint` (Relay). Without JS, Relay 303s to `/check-your-inbox/` or `/subscribe-error/`. With JS, one `FormData` POST (`Accept: application/json`) and inline status.
+- Required fields: `email`; `list[]` values `stream-alerts` and `new-post-notifications`; `consent=true`; honeypot `_gotcha`; `form_started_at`; `source_url`; Turnstile token `cf-turnstile-response` when `site.subscribe.turnstile_sitekey` is set.
+- Send every checked list in one request. Relay sends one confirmation covering chosen lists. Reset Turnstile after submit (`turnstile.reset`).
+- Do not POST test signups to the live endpoint. Do not add a local subscribe server (removed in PR #6).
+- Result pages stay `noindex`, out of nav/sitemap, and `coming_soon_exempt`.

@@ -1,0 +1,12 @@
+---
+description: Global We Vibing invariants for every agent run
+alwaysApply: true
+---
+
+- Read `docs/agent/status.md` first. After meaningful work, update it; append `docs/agent/decisions.md` for lasting choices. Use `docs/agent/handoff.md` if stopping mid-task.
+- Product: free AI-coding streams (Twitch `seeleyvibing`), blog, Relay email alerts. Company: What Do You Want? LLC. No swearing. Patreon is optional donations only.
+- `coming_soon: true` in `_config.yml` currently ships a splash. Do not set it `false` unless the task is to launch. Preview the full site with a second config file instead (see AGENTS.md).
+- Keep `baseurl: ""`. Do not add a `/wevibing` prefix.
+- No secrets in the repo. Do not POST test signups to the live Relay endpoint.
+- PRs do not run CI; run `bundle exec jekyll build --config _config.yml -d _site` locally.
+- Keep `AGENTS.md` and `docs/` in `_config.yml` `exclude` so they are not published.

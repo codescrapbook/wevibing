@@ -1,0 +1,16 @@
+# Build + caches
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+*.css.map
+
+# Deps (lockfile is not ignored)
+vendor/
+node_modules/
+.bundle/
+
+# Local secrets and scratch
+.env
+.env.*
+tmp/
