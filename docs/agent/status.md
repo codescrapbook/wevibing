@@ -10,11 +10,11 @@ Updated: 2026-11-20
 - Schedule slots in `_data/schedule.yml` are still `example: true` (Tue/Thu 19:00 CT + one-off 2026-12-05).
 - Decap at `/admin/` uses GitHub backend; production `backend.base_url` (OAuth proxy) is unset.
 - No test suite, linter, or typecheck. Workflow runs only on `main` (not on PRs).
-- Open PRs at last check: none besides this agent-docs change.
+- Open PRs: [#8](https://github.com/codescrapbook/wevibing/pull/8) (this agent-docs change).
 
 ## In flight
 
-- Agent-onboarding docs: `AGENTS.md`, `.cursor/rules`, `.cursor/skills`, `docs/agent/*`, `.cursorignore`, `_config.yml` `exclude`.
+- PR #8: `AGENTS.md`, `.cursor/rules`, `.cursor/skills`, `docs/agent/*`, `.cursorignore`, `_config.yml` `exclude`.
 
 ## Known issues / gotchas
 
