@@ -6,14 +6,7 @@ permalink: /schedule/
 ---
 
 <div class="section">
-  <div class="twitch-embed video-embed">
-    <iframe
-      src="https://player.twitch.tv/?channel={{ site.twitch.channel }}&parent=wevibing.com&parent=www.wevibing.com&muted=true"
-      title="We Vibing on Twitch"
-      loading="lazy"
-      allowfullscreen
-      frameborder="0"></iframe>
-  </div>
+  {% include twitch-player.html %}
   <div class="button-row">
     <a class="btn btn-primary" href="{{ site.twitch.url }}" target="_blank" rel="noopener">Follow on Twitch</a>
     <a class="btn" href="{{ site.twitch.schedule_url }}" target="_blank" rel="noopener">Schedule on Twitch</a>

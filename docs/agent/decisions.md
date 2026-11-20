@@ -2,6 +2,13 @@
 
 Short log of choices that still constrain the repo. Newest first.
 
+## 2026-11-20 — Canonical privacy/cookies; first-party consent banner
+
+- Status: accepted
+- Context: Every What Do You Want? LLC site uses the same Privacy Policy and Cookie Notice on whatdoyouwant.io. This repo must not host copies.
+- Decision: Footer + splash link to `https://whatdoyouwant.io/privacy` and `https://whatdoyouwant.io/cookies`. Cookie banner + preferences store `wdyw_consent` first-party. Twitch player is Functional and gated. Turnstile and Cloudflare Web Analytics stay ungated. `/privacy/` and `/cookies/` are redirects, not local legal text.
+- Inventory: `docs/agent/cookies.md`
+
 ## 2026-11-18 — Twitch channel is `seeleyvibing`
 
 - Status: accepted

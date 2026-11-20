@@ -20,15 +20,18 @@ We Vibing ([wevibing.com](https://wevibing.com)) is a free Jekyll site: AI-codin
 
 | Path | Role |
 | --- | --- |
-| `_config.yml` | title, `coming_soon`, nav, subscribe, twitch, patreon, permalinks, `exclude` |
-| `_layouts/default.html` | chrome + splash swap (`coming_soon_exempt`) |
+| `_config.yml` | title, `coming_soon`, nav, subscribe, twitch, patreon, `legal`, permalinks, `exclude` |
+| `_layouts/default.html` | chrome + splash swap (`coming_soon_exempt`) + cookie banner |
 | `_layouts/page.html`, `post.html` | page/post wrappers |
-| `_includes/` | `header`, `footer`, `coming-soon`, `subscribe-form`, `schedule-list`, `schedule-item` |
+| `_includes/` | `header`, `footer`, `coming-soon`, `subscribe-form`, `schedule-list`, `schedule-item`, `cookie-consent`, `twitch-player` |
 | `_plugins/coming_soon.rb` | deletes `feed.xml` + `sitemap.xml` when splash is on (not HTML) |
 | `_posts/*.md` | blog; URL is `/blog/<filename-slug>/` from `permalink: /blog/:title/` |
 | `_data/schedule.yml` | Twitch slots (America/Chicago, shown as CT) |
 | `assets/css/main.scss` | all CSS; `$bp-md: 960px` must match JS `DESKTOP_BP` |
 | `assets/js/subscribe.js` | progressive enhancement for the Relay form |
+| `assets/js/cookie-consent.js` | `wdyw_consent` cookie, banner, preferences, gated embeds |
+| `privacy/index.html` → canonical Privacy Policy; `cookies/index.html` → canonical Cookie Notice | `layout: null` (still live during splash) |
+| `docs/agent/cookies.md` | cookie / storage / third-party inventory |
 | `index.md` `/` · `schedule.md` `/schedule/` · `blog.md` `/blog/` | blog lists 10 posts per page |
 | `about.md` `projects.md` `support.md` | `/support/` is footer-only, not in nav |
 | `check-your-inbox.md` `subscribed.md` `unsubscribed.md` `subscribe-error.md` | `noindex`, `coming_soon_exempt`, `sitemap: false` |
@@ -72,11 +75,12 @@ CI: `ruby/setup-ruby@v1`, `ruby-version: '3.2'`, `bundler-cache: true`, then the
 - Schedule slot: weekly `day` **or** one-off `date` (not both). `start` is 24h `HH:MM` CT. Remove `example: true` when the slot is real. Past one-offs drop off on the next build.
 - Relay form contract: `email`, `list[]` (`stream-alerts`, `new-post-notifications`), `consent=true`, `_gotcha`, `form_started_at`, `source_url`, `cf-turnstile-response`. One POST with every checked list. Details: README.
 - Splash HTML is swapped in `_layouts/default.html`. Exempt pages set `coming_soon_exempt: true`.
+- Cookie banner + preferences: first-party `wdyw_consent`. Canonical Privacy Policy / Cookie Notice are `site.legal.*` on whatdoyouwant.io; do not host copies here. Gate the Twitch player (`data-consent-embed="functional"`). Never gate Turnstile or Cloudflare Web Analytics.
 - Company string: `What Do You Want? LLC`. No swearing.
 
 ## Config keys (never values)
 
-No runtime env vars for the site. Public keys in `_config.yml`: `subscribe.endpoint`, `subscribe.turnstile_sitekey`, `twitch.channel` / `twitch.url` / `twitch.schedule_url`, `patreon.url`. Gitignored: `.env`. A Decap GitHub OAuth proxy (not in this repo) would use `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`.
+No runtime env vars for the site. Public keys in `_config.yml`: `subscribe.endpoint`, `subscribe.turnstile_sitekey`, `twitch.channel` / `twitch.url` / `twitch.schedule_url`, `patreon.url`, `legal.privacy_url`, `legal.cookies_url`. Gitignored: `.env`. A Decap GitHub OAuth proxy (not in this repo) would use `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`.
 
 ## CI
 
@@ -92,4 +96,5 @@ No runtime env vars for the site. Public keys in `_config.yml`: `subscribe.endpo
 - Do not change Twitch embed `parent=` away from `wevibing.com` / `www.wevibing.com` (localhost player errors are expected).
 - Do not hardcode the Twitch channel; use `site.twitch.*`. Username `wevibing` is taken.
 - Do not publish `docs/` or `AGENTS.md` (keep them in `_config.yml` `exclude`).
+- Do not host a site-specific Privacy Policy or Cookie Notice; link to `https://whatdoyouwant.io/privacy` and `https://whatdoyouwant.io/cookies`.
 - Do not add `CLAUDE.md`; this file is the agent entrypoint.

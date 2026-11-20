@@ -25,6 +25,11 @@ twitch:
 patreon:
   url: "https://www.patreon.com/wevibing"
 
+# Canonical legal pages live on the company site. Do not host copies here.
+legal:
+  privacy_url: "https://whatdoyouwant.io/privacy"
+  cookies_url: "https://whatdoyouwant.io/cookies"
+
 author:
   name: "Joe Seeley"
 
