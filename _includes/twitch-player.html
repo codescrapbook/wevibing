@@ -1,0 +1,17 @@
+{%- comment -%}
+  Twitch embed is Functional: only inject the iframe after wdyw_consent.functional.
+  parent= must stay wevibing.com / www.wevibing.com. Channel comes from site.twitch.channel.
+{%- endcomment -%}
+<div
+  class="twitch-embed video-embed"
+  data-consent-embed="functional"
+  data-src="https://player.twitch.tv/?channel={{ site.twitch.channel }}&parent=wevibing.com&parent=www.wevibing.com&muted=true"
+  data-title="We Vibing on Twitch">
+  <div class="consent-fallback">
+    <p>The Twitch player uses functional cookies. Allow functional cookies to load it here, or watch on Twitch.</p>
+    <div class="button-row">
+      <button type="button" class="btn btn-primary" data-cookie-preferences>Cookie Preferences</button>
+      <a class="btn" href="{{ site.twitch.url }}" target="_blank" rel="noopener">Watch on Twitch</a>
+    </div>
+  </div>
+</div>

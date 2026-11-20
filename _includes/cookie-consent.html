@@ -1,0 +1,74 @@
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie notice" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-copy">
+      <p>
+        This website uses cookies to enable essential site functionality and to optimize our Services.
+        Please make a selection to allow all or only necessary cookies. For more information, review our
+        <a href="{{ site.legal.privacy_url }}">Privacy Policy</a>.
+      </p>
+      <p>
+        <button type="button" class="link-button" data-cookie-preferences>View Cookie Preferences</button>
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="btn btn-primary" data-cookie-allow-all>Allow All Cookies</button>
+      <button type="button" class="btn" data-cookie-necessary>Necessary Cookies Only</button>
+      <button type="button" class="cookie-banner-close" data-cookie-necessary aria-label="Close and allow necessary cookies only">&times;</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-prefs" class="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
+  <div class="cookie-prefs-backdrop" data-cookie-prefs-dismiss></div>
+  <div class="cookie-prefs-panel" tabindex="-1">
+    <div class="cookie-prefs-head">
+      <h2 id="cookie-prefs-title">Cookie Preferences</h2>
+      <button type="button" class="cookie-banner-close" data-cookie-prefs-dismiss aria-label="Close cookie preferences">&times;</button>
+    </div>
+    <p>
+      Choose which cookies to allow. Details are in our
+      <a href="{{ site.legal.cookies_url }}">Cookie Notice</a>.
+    </p>
+    <ul class="cookie-cats">
+      <li>
+        <label class="cookie-cat">
+          <input type="checkbox" checked disabled data-cookie-cat="necessary" />
+          <span>
+            <strong>Strictly Necessary</strong>
+            Always on. Required for security, your consent choice, and core features including bot protection.
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="cookie-cat">
+          <input type="checkbox" data-cookie-cat="functional" />
+          <span>
+            <strong>Functional</strong>
+            Optional features such as the Twitch player on the schedule page.
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="cookie-cat">
+          <input type="checkbox" data-cookie-cat="performance" />
+          <span>
+            <strong>Performance</strong>
+            Analytics that help us understand site use. Cloudflare Web Analytics is cookieless and always on.
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="cookie-cat">
+          <input type="checkbox" data-cookie-cat="targeting" />
+          <span>
+            <strong>Targeting</strong>
+            Advertising or cross-site tracking cookies. We do not currently load any.
+          </span>
+        </label>
+      </li>
+    </ul>
+    <div class="cookie-prefs-actions">
+      <button type="button" class="btn btn-primary" data-cookie-save>Save preferences</button>
+    </div>
+  </div>
+</div>

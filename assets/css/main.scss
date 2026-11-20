@@ -24,6 +24,7 @@ body {
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   line-height: 1.7;
+  padding-bottom: var(--cookie-banner-offset, 0px);
 }
 a { color: var(--brand); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -97,6 +98,18 @@ img { max-width: 100%; height: auto; }
   color: var(--muted);
 }
 .footer-inner .small { font-size: 0.9rem; opacity: 0.85; }
+.footer-legal { margin: 8px 0 0; }
+.link-button {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand);
+  font: inherit;
+  cursor: pointer;
+}
+.link-button:hover { text-decoration: underline; }
 
 /* Coming soon */
 body.is-coming-soon {
@@ -114,6 +127,7 @@ body.is-coming-soon {
   justify-content: center;
   text-align: center;
   padding: 48px 20px 64px;
+  padding-bottom: calc(64px + var(--cookie-banner-offset, 0px));
 }
 .soon-logo {
   width: min(371px, 86vw);
@@ -229,6 +243,15 @@ body.is-coming-soon {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 .soon-card p { color: var(--muted); }
+.soon-legal {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.soon-legal a,
+.soon-legal .link-button { color: var(--muted); }
+.soon-legal a:hover,
+.soon-legal .link-button:hover { color: var(--text); }
 
 /* Home */
 .hero {
@@ -397,6 +420,29 @@ body.is-coming-soon {
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
 }
 .twitch-embed { background: #000; }
+.video-embed:not(:has(iframe)) {
+  height: auto;
+  padding-bottom: 0;
+}
+.video-embed .consent-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+  background: #0b1320;
+  color: var(--muted);
+}
+.video-embed:not(:has(iframe)) .consent-fallback {
+  position: static;
+  padding: 24px 18px;
+}
+.video-embed .consent-fallback p { margin: 0; max-width: 36rem; }
+.video-embed .consent-fallback .button-row { justify-content: center; }
 .page-header .subtitle { color: var(--muted); margin: 6px 0 0; }
 .post-summary p { margin: 8px 0; color: var(--muted); }
 
@@ -537,6 +583,7 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
   .soon {
     justify-content: flex-start;
     padding: 24px 20px 40px;
+    padding-bottom: calc(40px + var(--cookie-banner-offset, 0px));
   }
   .soon-logo { width: min(260px, 70vw); margin-bottom: 0; }
   .soon h1 { font-size: clamp(28px, 7vw, 36px); margin: 6px 0 8px; }
@@ -555,6 +602,7 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
     justify-content: center;
     text-align: left;
     padding: 32px 40px;
+    padding-bottom: calc(32px + var(--cookie-banner-offset, 0px));
   }
   .soon-logo {
     grid-column: 1;
@@ -584,5 +632,128 @@ h3 { font-size: clamp(18px, 2.6vw, 22px); }
   .soon-offer { margin: 18px 0 0; }
   .soon-pills { justify-content: flex-start; margin-top: 4px; }
   .soon-card { width: 100%; margin-top: 8px; }
+  .soon-legal {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+/* Cookie banner + preferences */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: #0a1018;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.35);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.cookie-banner-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px 24px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 16px 20px;
+}
+.cookie-banner-copy {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.cookie-banner-copy p { margin: 0; color: var(--muted); }
+.cookie-banner-copy p + p { margin-top: 8px; }
+.cookie-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 auto;
+}
+.cookie-banner-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.cookie-banner-close:hover { border-color: var(--brand); }
+html.cookie-prefs-open { overflow: hidden; }
+.cookie-prefs {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cookie-prefs[hidden] { display: none; }
+.cookie-prefs-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+.cookie-prefs-panel {
+  position: relative;
+  z-index: 1;
+  width: min(480px, 100%);
+  max-height: min(90vh, 720px);
+  overflow: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.cookie-prefs-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cookie-prefs-head h2 { margin: 0; font-size: 1.25rem; }
+.cookie-prefs-panel > p { color: var(--muted); margin: 10px 0 0; }
+.cookie-cats { list-style: none; margin: 16px 0 0; padding: 0; }
+.cookie-cats li { margin: 0; padding: 0; }
+.cookie-cat {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--text);
+}
+.cookie-cats li:first-child .cookie-cat { border-top: 0; }
+.cookie-cat input {
+  margin: 0.35em 0 0;
+  accent-color: var(--brand);
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.cookie-cat input:disabled { cursor: not-allowed; }
+.cookie-cat span { min-width: 0; }
+.cookie-cat strong { display: block; }
+.cookie-prefs-actions { margin-top: 16px; }
+
+@media (max-width: 720px) {
+  .cookie-banner-inner { padding: 14px 16px 16px; }
+  .cookie-banner-actions { width: 100%; }
+  .cookie-banner-actions .btn { flex: 1 1 auto; }
 }
 
